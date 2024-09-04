@@ -1,0 +1,19 @@
+<svg class="HomepageFrontdoorConnection " data-js-controller="HomepageFrontdoorConnection" data-js-id="Standalone-ConnectTerminalConnection" style="left: 38px; top: 347px; width: 143px; height: 53px;">
+  <defs>
+    <linearGradient class="RotatingGradient" id="Standalone-ConnectTerminalConnectionGradient" gradientUnits="userSpaceOnUse" data-js-controller="RotatingGradient" data-js-start-rotation="" data-js-speed="" x1="16.885340421600596" x2="83.11465957841177" y1="87.462238601113" y2="12.537761398897942">
+  
+    
+    <stop offset="0" stop-color="#11efe3"></stop>
+  
+    
+    <stop offset="1" stop-color="#9966ff"></stop>
+  
+</linearGradient>
+  </defs>
+
+  <path stroke="url(#Standalone-ConnectTerminalConnectionGradient)" stroke-width="2" fill="none" data-js-target="HomepageFrontdoorConnection.path" d="M1,1
+                L1,32
+                Q1,52
+                21,52
+                L142,52" style="stroke-dasharray: 184.465px; stroke-dashoffset: 0px;"></path>
+</svg>

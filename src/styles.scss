@@ -1,0 +1,67 @@
+.stripe-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-areas:
+    ".       .        Tax      .         .       ."
+    "Billing .        .        Invoicing Capital ."
+    ".       Atlas    Payments Climate   .       Treasury"
+    "Connect .        .        Radar     .       ."
+    ".       .        Terminal Checkout  Issuing ."
+    ".       Identity .        .         Sigma   Elements";
+}
+
+.custom-svg {
+  svg {
+    stroke-width: 1.2px;
+  }
+
+  path,
+  circle {
+    stroke: #c4ccd8;
+    fill: transparent;
+
+    /* &:hover {
+      stroke: transparent;
+    } */
+  }
+}
+
+.slot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  transform: scale(0.8);
+
+  &:hover {
+    transform: scale(1);
+    .svg-colored {
+      opacity: 1;
+    }
+    .svg-bw {
+      opacity: 0;
+    }
+  }
+}
+
+.svg-colored {
+  position: absolute;
+  opacity: 0;
+}
+.svg-bw {
+  position: absolute;
+  opacity: 1;
+}
+
+.ProductIcon {
+  transform: scale(1);
+
+  &:hover {
+    transform: scale(1);
+  }
+}
+
+.HomepageFrontdoorConnection {
+  position: absolute;
+}

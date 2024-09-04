@@ -1,0 +1,16 @@
+<svg class="HomepageFrontdoorConnection " data-js-controller="HomepageFrontdoorConnection" data-js-id="Standalone-BillingInvoicingConnection" style="left: 77px; top: 128px; width: 194px; height: 4px;">
+  <defs>
+    <linearGradient class="RotatingGradient" id="Standalone-BillingInvoicingConnectionGradient" gradientUnits="userSpaceOnUse" data-js-controller="RotatingGradient" data-js-start-rotation="" data-js-speed="" x1="53.50958682597444" x2="46.49041317404204" y1="99.8766759148096" y2="0.1233240851892532">
+  
+    
+    <stop offset="0" stop-color="#FFD848"></stop>
+  
+    
+    <stop offset="1" stop-color="#00D924"></stop>
+  
+</linearGradient>
+  </defs>
+
+  <path stroke="url(#Standalone-BillingInvoicingConnectionGradient)" stroke-width="2" fill="none" data-js-target="HomepageFrontdoorConnection.path" d="M1,1
+                L193,1" style="stroke-dasharray: 192px; stroke-dashoffset: 192px;"></path>
+</svg>

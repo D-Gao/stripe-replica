@@ -1,0 +1,15 @@
+<svg class="HomepageFrontdoorConnection " data-js-controller="HomepageFrontdoorConnection" data-js-id="Standalone-PaymentsTaxConnection" style="left: 218px; top: 77px; width: 4px; height: 104px;">
+  <defs>
+    <linearGradient class="RotatingGradient" id="Standalone-PaymentsTaxConnectionGradient" gradientUnits="userSpaceOnUse" data-js-controller="RotatingGradient" data-js-start-rotation="" data-js-speed="" x1="35.36055282282035" x2="64.63944717716386" y1="2.1911453144235296" y2="97.80885468558131">
+  
+    
+    <stop offset="0" stop-color="#ff5996"></stop>
+  
+    
+    <stop offset="1" stop-color="#9966ff"></stop>
+  
+</linearGradient>
+  </defs>
+
+  <path stroke="url(#Standalone-PaymentsTaxConnectionGradient)" stroke-width="2" fill="none" data-js-target="HomepageFrontdoorConnection.path" d="M1,103 L1,1" style="stroke-dasharray: 102px; stroke-dashoffset: 0px;"></path>
+</svg>

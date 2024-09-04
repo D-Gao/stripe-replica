@@ -1,0 +1,15 @@
+<svg class="HomepageFrontdoorConnection HomepageFrontdoorSuiteAnimation__connection--issuingCapital" data-js-controller="HomepageFrontdoorConnection" data-js-id="Standalone-IssuingCapitalConnection" style="left: 394px; top: 167px; width: 12px; height: 194px;">
+  <defs>
+    <linearGradient class="RotatingGradient" id="Standalone-IssuingCapitalConnectionGradient" gradientUnits="userSpaceOnUse" data-js-controller="RotatingGradient" data-js-start-rotation="-30" data-js-speed="" x1="86.16342656996056" x2="13.836573430028025" y1="15.471655430370397" y2="84.52834456961766">
+  
+    
+    <stop offset="0" stop-color="#0073e6"></stop>
+  
+    
+    <stop offset="1" stop-color="#ff80ff"></stop>
+  
+</linearGradient>
+  </defs>
+
+  <path stroke="url(#Standalone-IssuingCapitalConnectionGradient)" stroke-width="2" fill="none" data-js-target="HomepageFrontdoorConnection.path" d="M1,193 L1,1" style="stroke-dasharray: 192px; stroke-dashoffset: 192px;"></path>
+</svg>

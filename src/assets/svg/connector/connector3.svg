@@ -1,0 +1,18 @@
+<svg class="HomepageFrontdoorConnection HomepageFrontdoorSuiteAnimation__connection--issuingTreasury" data-js-controller="HomepageFrontdoorConnection" data-js-id="Standalone-IssuingTreasuryConnection" style="left: 402px; top: 218px; width: 45px; height: 143px;">
+  <defs>
+    <linearGradient class="RotatingGradient" id="Standalone-IssuingTreasuryConnectionGradient" gradientUnits="userSpaceOnUse" data-js-controller="RotatingGradient" data-js-start-rotation="" data-js-speed="" x1="4.90837367975292" x2="95.09162632023994" y1="28.395712559882913" y2="71.60428744013198">
+  
+    
+    <stop offset="0" stop-color="#0073e6"></stop>
+  
+    
+    <stop offset="1" stop-color="#ff80ff"></stop>
+  
+</linearGradient>
+  </defs>
+
+  <path stroke="url(#Standalone-IssuingTreasuryConnectionGradient)" stroke-width="2" fill="none" data-js-target="HomepageFrontdoorConnection.path" d="M1,142
+                L1,21
+                Q1,1 21,1
+                L44,1" style="stroke-dasharray: 176.465px; stroke-dashoffset: 0px;"></path>
+</svg>

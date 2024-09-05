@@ -49,7 +49,6 @@ const map: Record<string, JSX.Element> = {
   Treasury: <TreasureSvg></TreasureSvg>,
 };
 
-//custom-svg
 const App = () => {
   const tlArray = useMemo(() => {
     return Array.from({ length: 8 }, () => gsap.timeline());
@@ -59,18 +58,23 @@ const App = () => {
     const svgConnectors = document.querySelectorAll(".connectors svg");
     const connectorsLength: number[] = [];
     const connectorsId: string[] = [];
+    const connectFromTo = [
+      { from: "Payments", to: "Connect" },
+      { from: "Payments", to: "Terminal" },
+      { from: "Issuing", to: "Capital" },
+      { from: "Issuing", to: "Treasury" },
+      { from: "Connect", to: "Terminal" },
+      { from: "Payments", to: "Tax" },
+      { from: "Payments", to: "Radar" },
+      { from: "Billing", to: "Invoicing" },
+    ];
     svgConnectors.forEach((svg) => {
       const id = (svg as SVGElement).getAttribute("data-js-id");
-      /* const suffix = id?.split("-")[1]; */
       const path = (svg as SVGElement).children[1];
-
       const pathLength = (path as SVGPathElement).getTotalLength();
-      /* document.documentElement.style.setProperty(
-        `--starting-dashoffset-${suffix}`,
-        pathLength + "px"
-      ); */
       connectorsId.push(id!);
       connectorsLength.push(pathLength);
+      /* connectFromTo.push({[id!]: {from: } }) */
     });
     tlArray.forEach((tl, i) => {
       tl.to(`[data-js-id="${connectorsId[i]}"] path`, {
@@ -80,7 +84,109 @@ const App = () => {
           { strokeDashoffset: -connectorsLength[i] + "px", duration: 0.5 },
         ],
         ease: "linear",
-      }).pause();
+      })
+        .to(
+          `.${connectFromTo[i].from}.slot`,
+          {
+            scale: 1,
+            backgroundColor: "white",
+            duration: 0.2,
+            yoyo: true, // Automatically reverse
+            repeatDelay: 2,
+            repeat: 1, // Repeat the forward and reverse cycle once
+            /* onComplete: function () {
+              gsap.set(`.${connectFromTo[i].from}.slot`, {
+                clearProps: "transform",
+              }); // Clears inline styles after animation
+            }, */
+          },
+          "<"
+        )
+        .to(
+          `.${connectFromTo[i].from} .svg-colored`,
+          {
+            scale: 0.7,
+            opacity: 1,
+            duration: 0.2,
+            repeatDelay: 2,
+            yoyo: true, // Automatically reverse
+            repeat: 1, // Repeat the forward and reverse cycle once
+          },
+          "<"
+        )
+        .to(
+          `.${connectFromTo[i].from} .svg-bw`,
+          {
+            scale: 0.7,
+            opacity: 0,
+            duration: 0.2,
+            repeatDelay: 2,
+            yoyo: true, // Automatically reverse
+            repeat: 1, // Repeat the forward and reverse cycle once
+          },
+          "<"
+        )
+        .to(
+          `.${connectFromTo[i].from} .svg-cap`,
+          {
+            opacity: 1,
+            y: "-80%",
+            duration: 0.2,
+            repeatDelay: 2,
+            yoyo: true, // Automatically reverse
+            repeat: 1, // Repeat the forward and reverse cycle once
+          },
+          "<"
+        )
+        .to(
+          `.${connectFromTo[i].to}.slot`,
+          {
+            scale: 1,
+            backgroundColor: "white",
+            repeatDelay: 2,
+            duration: 0.2,
+            yoyo: true, // Automatically reverse
+            repeat: 1, // Repeat the forward and reverse cycle once
+          },
+          "0.5"
+        )
+        .to(
+          `.${connectFromTo[i].to} .svg-colored`,
+          {
+            scale: 0.7,
+            opacity: 1,
+            duration: 0.2,
+            repeatDelay: 2,
+            yoyo: true, // Automatically reverse
+            repeat: 1, // Repeat the forward and reverse cycle once
+          },
+          "<"
+        )
+        .to(
+          `.${connectFromTo[i].to} .svg-bw`,
+          {
+            scale: 0.7,
+            repeatDelay: 2,
+            opacity: 0,
+            duration: 0.2,
+            yoyo: true, // Automatically reverse
+            repeat: 1, // Repeat the forward and reverse cycle once
+          },
+          "<"
+        )
+        .to(
+          `.${connectFromTo[i].to} .svg-cap`,
+          {
+            opacity: 1,
+            y: "-80%",
+            repeatDelay: 2,
+            duration: 0.2,
+            yoyo: true, // Automatically reverse
+            repeat: 1, // Repeat the forward and reverse cycle once
+          },
+          "<"
+        )
+        .pause();
     });
 
     function playAnimation() {
@@ -116,7 +222,7 @@ const App = () => {
             {Object.entries(map).map(([key, SvgComponent]) => (
               <div
                 key={key}
-                className="relative border rounded-md p-2 z-10  slot"
+                className={"relative border rounded-md p-2 z-10  slot " + key}
                 style={{ gridArea: key }}
               >
                 <div className="svg-bw custom-svg">{SvgComponent}</div>

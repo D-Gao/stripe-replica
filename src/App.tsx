@@ -72,17 +72,6 @@ const App = () => {
       connectorsId.push(id!);
       connectorsLength.push(pathLength);
     });
-
-    /* const tl1 = gsap.timeline();
-    gsap.to(`[data-js-id="${connectorsId[0]}"] path`, {
-      keyframes: [
-        { strokeDashoffset: 0 + "px", duration: 0.5 },
-        { strokeDashoffset: 0 + "px", duration: 2 },
-        { strokeDashoffset: -connectorsLength[0] + "px", duration: 0.5 },
-      ],
-      ease: "linear",
-    });
-    console.log(tlArray); */
     tlArray.forEach((tl, i) => {
       tl.to(`[data-js-id="${connectorsId[i]}"] path`, {
         keyframes: [
@@ -94,15 +83,22 @@ const App = () => {
       }).pause();
     });
 
-    function playInSequence(index: number) {
-      if (index < tlArray.length) {
-        tlArray[index].restart().eventCallback("onComplete", () => {
-          playInSequence(index + 1); // Start the next timeline after the current one completes
-        });
-      }
+    function playAnimation() {
+      const masterTimeline = gsap.timeline();
+      // Customize the start times of each timeline
+      masterTimeline
+        .add(tlArray[0].restart(), 0) // Start first animation immediately
+        .add(tlArray[1].restart(), 0) // Start the second animation immediately
+        .add(tlArray[2].restart(), ">") // Start the third animation at the time as the second finish
+        .add(tlArray[3].restart(), "<") // Start the fourth animation at the same time as the third
+        .add(tlArray[4].restart(), ">") // Start fifth animation 1 second before the previous animation ends
+        .add(tlArray[5].restart(), ">") // Start sixth animation 2 seconds after the fifth starts
+        .add(tlArray[6].restart(), "<") // Start seventh animation shortly after the sixth
+        .add(tlArray[7].restart(), ">"); // Start eighth animation 3 seconds after the seventh
+      masterTimeline.repeat(-1);
     }
 
-    playInSequence(0);
+    playAnimation();
 
     return () => {
       tlArray.forEach((tl) => {
@@ -119,6 +115,7 @@ const App = () => {
           <div className="stripe-grid min-w-[540px] aspect-square ">
             {Object.entries(map).map(([key, SvgComponent]) => (
               <div
+                key={key}
                 className="relative border rounded-md p-2 z-10  slot"
                 style={{ gridArea: key }}
               >

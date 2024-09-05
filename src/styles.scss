@@ -87,6 +87,11 @@
   position: absolute;
 }
 
+.connectors {
+  path {
+    transition: none !important;
+  }
+}
 /* .connectors {
   .HomepageFrontdoorSuiteAnimation__connection--paymentsTerminal {
    

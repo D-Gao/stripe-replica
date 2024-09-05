@@ -37,21 +37,39 @@
   &:hover {
     transform: scale(1);
     .svg-colored {
+      transform: scale(0.7);
       opacity: 1;
     }
     .svg-bw {
+      transform: scale(0.7);
       opacity: 0;
+    }
+    .svg-cap {
+      position: absolute;
+      opacity: 1;
+      transform: translateY(-80%);
     }
   }
 }
 
 .svg-colored {
+  transform-origin: top center;
   position: absolute;
   opacity: 0;
 }
 .svg-bw {
+  transform-origin: top center;
   position: absolute;
   opacity: 1;
+}
+
+.svg-cap {
+  position: absolute;
+  bottom: 0;
+  opacity: 0;
+  letter-spacing: 0.2px;
+  line-height: normal;
+  font-size: 12px;
 }
 
 .ProductIcon {

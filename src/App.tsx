@@ -56,6 +56,7 @@ const App = () => {
               >
                 <div className="svg-bw custom-svg">{SvgComponent}</div>
                 <div className="svg-colored"> {SvgComponent}</div>
+                <span className="svg-cap">{key}</span>
               </div>
             ))}
           </div>

@@ -1,4 +1,4 @@
-<svg class="HomepageFrontdoorConnection " data-js-controller="HomepageFrontdoorConnection" data-js-id="Standalone-PaymentsRadarConnection" style="left: 218px; top: 257px; width: 53px; height: 53px;">
+<svg class="HomepageFrontdoorConnection HomepageFrontdoorSuiteAnimation__connection--paymentsRadar" data-js-controller="HomepageFrontdoorConnection" data-js-id="Standalone-PaymentsRadarConnection" style="left: 218px; top: 257px; width: 53px; height: 53px;">
   <defs>
     <linearGradient class="RotatingGradient" id="Standalone-PaymentsRadarConnectionGradient" gradientUnits="userSpaceOnUse" data-js-controller="RotatingGradient" data-js-start-rotation="" data-js-speed="" x1="98.95227362422997" x2="1.0477263757666648" y1="39.817912442994874" y2="60.18208755698896">
   

@@ -1,0 +1,111 @@
+@keyframes PaymentsConnectConnection-animation {
+  0% {
+    stroke-dashoffset: calc(
+      -1 * var(--starting-dashoffset-PaymentsConnectConnection)
+    );
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: var(--starting-dashoffset-PaymentsConnectConnection);
+  }
+}
+
+@keyframes PaymentsTerminalConnection-animation {
+  0% {
+    stroke-dashoffset: calc(
+      -1 * var(--starting-dashoffset-PaymentsTerminalConnection)
+    );
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: var(--starting-dashoffset-PaymentsTerminalConnection);
+  }
+}
+
+@keyframes IssuingTreasuryConnection-animation {
+  0% {
+    stroke-dashoffset: calc(
+      -1 * var(--starting-dashoffset-IssuingTreasuryConnection)
+    );
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: var(--starting-dashoffset-IssuingTreasuryConnection);
+  }
+}
+
+@keyframes IssuingCapitalConnection-animation {
+  0% {
+    stroke-dashoffset: calc(
+      -1 * var(--starting-dashoffset-IssuingCapitalConnection)
+    );
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: var(--starting-dashoffset-IssuingCapitalConnection);
+  }
+}
+
+@keyframes ConnectTerminalConnection-animation {
+  0% {
+    stroke-dashoffset: calc(
+      -1 * var(--starting-dashoffset-ConnectTerminalConnection)
+    );
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: var(--starting-dashoffset-ConnectTerminalConnection);
+  }
+}
+
+@keyframes PaymentsRadarConnection-animation {
+  0% {
+    stroke-dashoffset: calc(
+      -1 * var(--starting-dashoffset-PaymentsRadarConnection)
+    );
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: var(--starting-dashoffset-PaymentsRadarConnection);
+  }
+}
+
+@keyframes PaymentsTaxConnection-animation {
+  0% {
+    stroke-dashoffset: calc(
+      -1 * var(--starting-dashoffset-PaymentsTaxConnection)
+    );
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: var(--starting-dashoffset-PaymentsTaxConnection);
+  }
+}
+
+@keyframes BillingInvoicingConnection-animation {
+  0% {
+    stroke-dashoffset: calc(
+      -1 * var(--starting-dashoffset-BillingInvoicingConnection)
+    );
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: var(--starting-dashoffset-BillingInvoicingConnection);
+  }
+}

@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import "./styles.scss";
+
 import TaxSvg from "./assets/svg/tax.svg";
 import AtlasSvg from "./assets/svg/atlas.svg";
 import BillingSvg from "./assets/svg/billing.svg";
@@ -16,8 +19,13 @@ import TerminalSvg from "./assets/svg/terminal.svg";
 import TreasureSvg from "./assets/svg/treasure.svg";
 
 import ConnectorPath1 from "./assets/svg/connector/connector1.svg";
-import { useEffect } from "react";
-import "./styles.scss";
+import ConnectorPath2 from "./assets/svg/connector/connector2.svg";
+import ConnectorPath3 from "./assets/svg/connector/connector3.svg";
+import ConnectorPath4 from "./assets/svg/connector/connector4.svg";
+import ConnectorPath5 from "./assets/svg/connector/connector5.svg";
+import ConnectorPath6 from "./assets/svg/connector/connector6.svg";
+import ConnectorPath7 from "./assets/svg/connector/connector7.svg";
+import ConnectorPath8 from "./assets/svg/connector/connector8.svg";
 
 //#C4CCD8
 const map: Record<string, JSX.Element> = {
@@ -41,7 +49,24 @@ const map: Record<string, JSX.Element> = {
 
 //custom-svg
 const App = () => {
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const svgConnectors = document.querySelectorAll(".connectors svg");
+
+    svgConnectors.forEach((svg) => {
+      const id = (svg as SVGElement).getAttribute("data-js-id");
+
+      const suffix = id?.split("-")[1];
+
+      const path = (svg as SVGElement).children[1];
+      console.log(path);
+
+      const pathLength = (path as SVGPathElement).getTotalLength();
+      document.documentElement.style.setProperty(
+        `--starting-dashoffset-${suffix}`,
+        pathLength + "px"
+      );
+    });
+  }, []);
 
   return (
     <>
@@ -60,7 +85,16 @@ const App = () => {
               </div>
             ))}
           </div>
-          <ConnectorPath1 />
+          <div className="connectors">
+            <ConnectorPath1 />
+            <ConnectorPath2 />
+            <ConnectorPath3 />
+            <ConnectorPath4 />
+            <ConnectorPath5 />
+            <ConnectorPath6 />
+            <ConnectorPath7 />
+            <ConnectorPath8 />
+          </div>
         </div>
       </div>
     </>

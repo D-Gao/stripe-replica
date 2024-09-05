@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import "./styles.scss";
 
 import TaxSvg from "./assets/svg/tax.svg";
@@ -27,6 +27,8 @@ import ConnectorPath6 from "./assets/svg/connector/connector6.svg";
 import ConnectorPath7 from "./assets/svg/connector/connector7.svg";
 import ConnectorPath8 from "./assets/svg/connector/connector8.svg";
 
+import gsap from "gsap";
+
 //#C4CCD8
 const map: Record<string, JSX.Element> = {
   Tax: <TaxSvg></TaxSvg>,
@@ -49,23 +51,64 @@ const map: Record<string, JSX.Element> = {
 
 //custom-svg
 const App = () => {
+  const tlArray = useMemo(() => {
+    return Array.from({ length: 8 }, () => gsap.timeline());
+  }, []);
+
   useEffect(() => {
     const svgConnectors = document.querySelectorAll(".connectors svg");
-
+    const connectorsLength: number[] = [];
+    const connectorsId: string[] = [];
     svgConnectors.forEach((svg) => {
       const id = (svg as SVGElement).getAttribute("data-js-id");
-
-      const suffix = id?.split("-")[1];
-
+      /* const suffix = id?.split("-")[1]; */
       const path = (svg as SVGElement).children[1];
-      console.log(path);
 
       const pathLength = (path as SVGPathElement).getTotalLength();
-      document.documentElement.style.setProperty(
+      /* document.documentElement.style.setProperty(
         `--starting-dashoffset-${suffix}`,
         pathLength + "px"
-      );
+      ); */
+      connectorsId.push(id!);
+      connectorsLength.push(pathLength);
     });
+
+    /* const tl1 = gsap.timeline();
+    gsap.to(`[data-js-id="${connectorsId[0]}"] path`, {
+      keyframes: [
+        { strokeDashoffset: 0 + "px", duration: 0.5 },
+        { strokeDashoffset: 0 + "px", duration: 2 },
+        { strokeDashoffset: -connectorsLength[0] + "px", duration: 0.5 },
+      ],
+      ease: "linear",
+    });
+    console.log(tlArray); */
+    tlArray.forEach((tl, i) => {
+      tl.to(`[data-js-id="${connectorsId[i]}"] path`, {
+        keyframes: [
+          { strokeDashoffset: 0 + "px", duration: 0.5 },
+          { strokeDashoffset: 0 + "px", duration: 2 },
+          { strokeDashoffset: -connectorsLength[i] + "px", duration: 0.5 },
+        ],
+        ease: "linear",
+      }).pause();
+    });
+
+    function playInSequence(index: number) {
+      if (index < tlArray.length) {
+        tlArray[index].restart().eventCallback("onComplete", () => {
+          playInSequence(index + 1); // Start the next timeline after the current one completes
+        });
+      }
+    }
+
+    playInSequence(0);
+
+    return () => {
+      tlArray.forEach((tl) => {
+        tl.clear();
+      });
+    };
   }, []);
 
   return (

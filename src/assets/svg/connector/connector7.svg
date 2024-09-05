@@ -11,5 +11,5 @@
 </linearGradient>
   </defs>
 
-  <path stroke="url(#Standalone-PaymentsTaxConnectionGradient)" stroke-width="2" fill="none" data-js-target="HomepageFrontdoorConnection.path" d="M1,103 L1,1" style="stroke-dasharray: 102px; stroke-dashoffset: 0px;"></path>
+  <path stroke="url(#Standalone-PaymentsTaxConnectionGradient)" stroke-width="2" fill="none" data-js-target="HomepageFrontdoorConnection.path" d="M1,103 L1,1" style="stroke-dasharray: 102px; stroke-dashoffset: 102px;"></path>
 </svg>

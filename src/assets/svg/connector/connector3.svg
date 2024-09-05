@@ -14,5 +14,5 @@
   <path stroke="url(#Standalone-IssuingTreasuryConnectionGradient)" stroke-width="2" fill="none" data-js-target="HomepageFrontdoorConnection.path" d="M1,142
                 L1,21
                 Q1,1 21,1
-                L44,1" style="stroke-dasharray: 176.465px; stroke-dashoffset: 0px;"></path>
+                L44,1" style="stroke-dasharray: 176.465px; stroke-dashoffset:  176.465px;"></path>
 </svg>

@@ -1,4 +1,9 @@
 @import url(./assets/scss/animation.scss);
+@import url(./assets/scss/variables.scss);
+
+:root {
+  --layoutWidth: 1080px; // Declare CSS custom property (variable)
+}
 
 .stripe-grid {
   display: grid;
@@ -22,10 +27,6 @@
   circle {
     stroke: #c4ccd8;
     fill: transparent;
-
-    /* &:hover {
-      stroke: transparent;
-    } */
   }
 }
 
@@ -35,6 +36,7 @@
   align-items: center;
   z-index: 1;
   transform: scale(0.8);
+  background-color: rgba(255, 255, 255, 0);
 
   &:hover {
     transform: scale(1) !important;
@@ -92,62 +94,3 @@
     transition: none !important;
   }
 }
-/* .connectors {
-  .HomepageFrontdoorSuiteAnimation__connection--paymentsTerminal {
-   
-    path {
-      animation: PaymentsTerminalConnection-animation 2s ease-in-out infinite;
-    }
-  }
-
-  .HomepageFrontdoorSuiteAnimation__connection--paymentsConnect {
-  
-    path {
-      animation: PaymentsConnectConnection-animation 2s ease-in-out infinite;
-    }
-  }
-
-  .HomepageFrontdoorSuiteAnimation__connection--issuingTreasury {
-    
-    path {
-      animation: IssuingTreasuryConnection-animation 2s ease-in-out infinite;
-    }
-  }
-
-  .HomepageFrontdoorSuiteAnimation__connection--issuingCapital {
-    
-    path {
-      animation: IssuingCapitalConnection-animation 2s ease-in-out infinite;
-    }
-  }
-
-  .HomepageFrontdoorSuiteAnimation__connection--connectTerminal {
-    
-    path {
-      animation: ConnectTerminalConnection-animation 2s ease-in-out infinite;
-    }
-  }
-
-  .HomepageFrontdoorSuiteAnimation__connection--paymentsRadar {
-    
-    path {
-      animation: PaymentsRadarConnection-animation 2s ease-in-out infinite;
-    }
-  }
-
-  .HomepageFrontdoorSuiteAnimation__connection--paymentsTax {
-   
-    path {
-      animation: PaymentsTaxConnection-animation 2s ease-in-out infinite;
-    }
-  }
-
-  .HomepageFrontdoorSuiteAnimation__connection--billingInvoicing {
-   
-    path {
-      animation: BillingInvoicingConnection-animation 2s ease-in-out infinite;
-    }
-  }
-} */
-
-/* animation */

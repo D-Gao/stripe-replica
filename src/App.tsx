@@ -1,246 +1,291 @@
-import { useEffect, useMemo } from "react";
 import "./styles.scss";
-
-import TaxSvg from "./assets/svg/tax.svg";
-import AtlasSvg from "./assets/svg/atlas.svg";
-import BillingSvg from "./assets/svg/billing.svg";
-import CapitalSvg from "./assets/svg/capital.svg";
-import CheckouSvgt from "./assets/svg/checkout.svg";
-import ClimateSvg from "./assets/svg/climate.svg";
-import ConnectSvg from "./assets/svg/connect.svg";
-import ElementsSvg from "./assets/svg/elements.svg";
-import IdentitySvg from "./assets/svg/identity.svg";
-import InvoicingSvg from "./assets/svg/invoicing.svg";
-import IssuingSvg from "./assets/svg/issuing.svg";
-import PaymentSvg from "./assets/svg/payment.svg";
-import RadarSvg from "./assets/svg/radar.svg";
-import SigmaSvg from "./assets/svg/sigma.svg";
-import TerminalSvg from "./assets/svg/terminal.svg";
-import TreasureSvg from "./assets/svg/treasure.svg";
-
-import ConnectorPath1 from "./assets/svg/connector/connector1.svg";
-import ConnectorPath2 from "./assets/svg/connector/connector2.svg";
-import ConnectorPath3 from "./assets/svg/connector/connector3.svg";
-import ConnectorPath4 from "./assets/svg/connector/connector4.svg";
-import ConnectorPath5 from "./assets/svg/connector/connector5.svg";
-import ConnectorPath6 from "./assets/svg/connector/connector6.svg";
-import ConnectorPath7 from "./assets/svg/connector/connector7.svg";
-import ConnectorPath8 from "./assets/svg/connector/connector8.svg";
-
-import gsap from "gsap";
-
-//#C4CCD8
-const map: Record<string, JSX.Element> = {
-  Tax: <TaxSvg></TaxSvg>,
-  Atlas: <AtlasSvg></AtlasSvg>,
-  Billing: <BillingSvg></BillingSvg>,
-  Capital: <CapitalSvg></CapitalSvg>,
-  Checkout: <CheckouSvgt></CheckouSvgt>,
-  Climate: <ClimateSvg></ClimateSvg>,
-  Connect: <ConnectSvg></ConnectSvg>,
-  Elements: <ElementsSvg></ElementsSvg>,
-  Identity: <IdentitySvg></IdentitySvg>,
-  Invoicing: <InvoicingSvg></InvoicingSvg>,
-  Issuing: <IssuingSvg></IssuingSvg>,
-  Payments: <PaymentSvg></PaymentSvg>,
-  Radar: <RadarSvg></RadarSvg>,
-  Sigma: <SigmaSvg></SigmaSvg>,
-  Terminal: <TerminalSvg></TerminalSvg>,
-  Treasury: <TreasureSvg></TreasureSvg>,
-};
+import ModulesContianer from "./modules/ModulesContianer";
 
 const App = () => {
-  const tlArray = useMemo(() => {
-    return Array.from({ length: 8 }, () => gsap.timeline());
-  }, []);
-
-  useEffect(() => {
-    const svgConnectors = document.querySelectorAll(".connectors svg");
-    const connectorsLength: number[] = [];
-    const connectorsId: string[] = [];
-    const connectFromTo = [
-      { from: "Payments", to: "Connect" },
-      { from: "Payments", to: "Terminal" },
-      { from: "Issuing", to: "Capital" },
-      { from: "Issuing", to: "Treasury" },
-      { from: "Connect", to: "Terminal" },
-      { from: "Payments", to: "Tax" },
-      { from: "Payments", to: "Radar" },
-      { from: "Billing", to: "Invoicing" },
-    ];
-    svgConnectors.forEach((svg) => {
-      const id = (svg as SVGElement).getAttribute("data-js-id");
-      const path = (svg as SVGElement).children[1];
-      const pathLength = (path as SVGPathElement).getTotalLength();
-      connectorsId.push(id!);
-      connectorsLength.push(pathLength);
-      /* connectFromTo.push({[id!]: {from: } }) */
-    });
-    tlArray.forEach((tl, i) => {
-      tl.to(`[data-js-id="${connectorsId[i]}"] path`, {
-        keyframes: [
-          { strokeDashoffset: 0 + "px", duration: 0.5 },
-          { strokeDashoffset: 0 + "px", duration: 2 },
-          { strokeDashoffset: -connectorsLength[i] + "px", duration: 0.5 },
-        ],
-        ease: "linear",
-      })
-        .to(
-          `.${connectFromTo[i].from}.slot`,
-          {
-            scale: 1,
-            backgroundColor: "white",
-            duration: 0.2,
-            yoyo: true, // Automatically reverse
-            repeatDelay: 2,
-            repeat: 1, // Repeat the forward and reverse cycle once
-            /* onComplete: function () {
-              gsap.set(`.${connectFromTo[i].from}.slot`, {
-                clearProps: "transform",
-              }); // Clears inline styles after animation
-            }, */
-          },
-          "<"
-        )
-        .to(
-          `.${connectFromTo[i].from} .svg-colored`,
-          {
-            scale: 0.7,
-            opacity: 1,
-            duration: 0.2,
-            repeatDelay: 2,
-            yoyo: true, // Automatically reverse
-            repeat: 1, // Repeat the forward and reverse cycle once
-          },
-          "<"
-        )
-        .to(
-          `.${connectFromTo[i].from} .svg-bw`,
-          {
-            scale: 0.7,
-            opacity: 0,
-            duration: 0.2,
-            repeatDelay: 2,
-            yoyo: true, // Automatically reverse
-            repeat: 1, // Repeat the forward and reverse cycle once
-          },
-          "<"
-        )
-        .to(
-          `.${connectFromTo[i].from} .svg-cap`,
-          {
-            opacity: 1,
-            y: "-80%",
-            duration: 0.2,
-            repeatDelay: 2,
-            yoyo: true, // Automatically reverse
-            repeat: 1, // Repeat the forward and reverse cycle once
-          },
-          "<"
-        )
-        .to(
-          `.${connectFromTo[i].to}.slot`,
-          {
-            scale: 1,
-            backgroundColor: "white",
-            repeatDelay: 2,
-            duration: 0.2,
-            yoyo: true, // Automatically reverse
-            repeat: 1, // Repeat the forward and reverse cycle once
-          },
-          "0.5"
-        )
-        .to(
-          `.${connectFromTo[i].to} .svg-colored`,
-          {
-            scale: 0.7,
-            opacity: 1,
-            duration: 0.2,
-            repeatDelay: 2,
-            yoyo: true, // Automatically reverse
-            repeat: 1, // Repeat the forward and reverse cycle once
-          },
-          "<"
-        )
-        .to(
-          `.${connectFromTo[i].to} .svg-bw`,
-          {
-            scale: 0.7,
-            repeatDelay: 2,
-            opacity: 0,
-            duration: 0.2,
-            yoyo: true, // Automatically reverse
-            repeat: 1, // Repeat the forward and reverse cycle once
-          },
-          "<"
-        )
-        .to(
-          `.${connectFromTo[i].to} .svg-cap`,
-          {
-            opacity: 1,
-            y: "-80%",
-            repeatDelay: 2,
-            duration: 0.2,
-            yoyo: true, // Automatically reverse
-            repeat: 1, // Repeat the forward and reverse cycle once
-          },
-          "<"
-        )
-        .pause();
-    });
-
-    function playAnimation() {
-      const masterTimeline = gsap.timeline();
-      // Customize the start times of each timeline
-      masterTimeline
-        .add(tlArray[0].restart(), 0) // Start first animation immediately
-        .add(tlArray[1].restart(), 0) // Start the second animation immediately
-        .add(tlArray[2].restart(), ">") // Start the third animation at the time as the second finish
-        .add(tlArray[3].restart(), "<") // Start the fourth animation at the same time as the third
-        .add(tlArray[4].restart(), ">") // Start fifth animation 1 second before the previous animation ends
-        .add(tlArray[5].restart(), ">") // Start sixth animation 2 seconds after the fifth starts
-        .add(tlArray[6].restart(), "<") // Start seventh animation shortly after the sixth
-        .add(tlArray[7].restart(), ">"); // Start eighth animation 3 seconds after the seventh
-      masterTimeline.repeat(-1);
-    }
-
-    playAnimation();
-
-    return () => {
-      tlArray.forEach((tl) => {
-        tl.clear();
-      });
-    };
-  }, []);
-
   return (
     <>
-      <div className="w-vw h-vh relative"></div>
-      <div className="absolute inset-0 flex justify-center items-center">
-        <div className="relative">
-          <div className="stripe-grid min-w-[540px] aspect-square ">
-            {Object.entries(map).map(([key, SvgComponent]) => (
-              <div
-                key={key}
-                className={"relative border rounded-md p-2 z-10  slot " + key}
-                style={{ gridArea: key }}
-              >
-                <div className="svg-bw custom-svg">{SvgComponent}</div>
-                <div className="svg-colored"> {SvgComponent}</div>
-                <span className="svg-cap">{key}</span>
+      <div>
+        <div className="flex flex-col min-h-[1000px]">
+          <h1 className="text-white text-4xl font-bold">Head Section</h1>{" "}
+          <p className="text-white">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis,
+            commodi pariatur impedit eaque non tempora, veritatis unde assumenda
+            quaerat sed, sint magni quibusdam cum sapiente consequuntur.
+            Reiciendis reprehenderit animi tempora.
+          </p>
+          <p className="text-white">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis,
+            commodi pariatur impedit eaque non tempora, veritatis unde assumenda
+            quaerat sed, sint magni quibusdam cum sapiente consequuntur.
+            Reiciendis reprehenderit animi tempora.
+          </p>
+          <p className="text-white">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis,
+            commodi pariatur impedit eaque non tempora, veritatis unde assumenda
+            quaerat sed, sint magni quibusdam cum sapiente consequuntur.
+            Reiciendis reprehenderit animi tempora.
+          </p>
+        </div>
+        <div className=" relative flex justify-center">
+          <div className="flex justify-center max-w-[1080px]">
+            <div className="container-div">
+              <div className="min-h-[800px] follow-div " data-id="m-0">
+                <h1 className="text-white text-4xl font-bold">
+                  A fully integrated suite of financial and payments products
+                </h1>
+                <div>
+                  <p className="text-white">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Tenetur rem aliquam, est recusandae velit, ab natus dolorum
+                    dolore temporibus, quia ducimus architecto laudantium
+                    impedit! Quis maiores laudantium molestias iste.
+                    Voluptatibus.
+                  </p>
+                </div>
+                <div>
+                  <p className="text-white">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Tenetur rem aliquam, est recusandae velit, ab natus dolorum
+                    dolore temporibus, quia ducimus architecto laudantium
+                    impedit! Quis maiores laudantium molestias iste.
+                    Voluptatibus.
+                  </p>
+                </div>
+                <div>
+                  <p className="text-white ">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Tenetur rem aliquam, est recusandae velit, ab natus dolorum
+                    dolore temporibus, quia ducimus architecto laudantium
+                    impedit! Quis maiores laudantium molestias iste.
+                    Voluptatibus.
+                  </p>
+                </div>
               </div>
-            ))}
+              <div className="min-h-[800px] follow-div " data-id="m-1">
+                <h1 className="text-white text-4xl font-bold">
+                  A fully integrated suite of financial and payments products
+                </h1>
+                <div>
+                  <p className="text-white">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Tenetur rem aliquam, est recusandae velit, ab natus dolorum
+                    dolore temporibus, quia ducimus architecto laudantium
+                    impedit! Quis maiores laudantium molestias iste.
+                    Voluptatibus.
+                  </p>
+                </div>
+                <div>
+                  <p className="text-white">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Tenetur rem aliquam, est recusandae velit, ab natus dolorum
+                    dolore temporibus, quia ducimus architecto laudantium
+                    impedit! Quis maiores laudantium molestias iste.
+                    Voluptatibus.
+                  </p>
+                </div>
+                <div>
+                  <p className="text-white">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Tenetur rem aliquam, est recusandae velit, ab natus dolorum
+                    dolore temporibus, quia ducimus architecto laudantium
+                    impedit! Quis maiores laudantium molestias iste.
+                    Voluptatibus.
+                  </p>
+                </div>
+              </div>
+              <div className="min-h-[800px] follow-div " data-id="m-2">
+                <h1 className="text-white text-4xl font-bold">
+                  A fully integrated suite of financial and payments products
+                </h1>
+                <div>
+                  <p className="text-white">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Tenetur rem aliquam, est recusandae velit, ab natus dolorum
+                    dolore temporibus, quia ducimus architecto laudantium
+                    impedit! Quis maiores laudantium molestias iste.
+                    Voluptatibus.
+                  </p>
+                </div>
+                <div>
+                  <p className="text-white">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Tenetur rem aliquam, est recusandae velit, ab natus dolorum
+                    dolore temporibus, quia ducimus architecto laudantium
+                    impedit! Quis maiores laudantium molestias iste.
+                    Voluptatibus.
+                  </p>
+                </div>
+                <div>
+                  <p className="text-white">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Tenetur rem aliquam, est recusandae velit, ab natus dolorum
+                    dolore temporibus, quia ducimus architecto laudantium
+                    impedit! Quis maiores laudantium molestias iste.
+                    Voluptatibus.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <ModulesContianer></ModulesContianer>
           </div>
-          <div className="connectors">
-            <ConnectorPath1 />
-            <ConnectorPath2 />
-            <ConnectorPath3 />
-            <ConnectorPath4 />
-            <ConnectorPath5 />
-            <ConnectorPath6 />
-            <ConnectorPath7 />
-            <ConnectorPath8 />
-          </div>
+        </div>
+
+        <div className="text-white">
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque
+            consequuntur harum in delectus, sunt dolorum autem quas? Sed
+            adipisci, autem nam quisquam minima sunt ullam fugiat quos nemo
+            necessitatibus vitae.
+          </p>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque
+            consequuntur harum in delectus, sunt dolorum autem quas? Sed
+            adipisci, autem nam quisquam minima sunt ullam fugiat quos nemo
+            necessitatibus vitae.
+          </p>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque
+            consequuntur harum in delectus, sunt dolorum autem quas? Sed
+            adipisci, autem nam quisquam minima sunt ullam fugiat quos nemo
+            necessitatibus vitae.
+          </p>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque
+            consequuntur harum in delectus, sunt dolorum autem quas? Sed
+            adipisci, autem nam quisquam minima sunt ullam fugiat quos nemo
+            necessitatibus vitae.
+          </p>
+        </div>
+        <div className="text-white">
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque
+            consequuntur harum in delectus, sunt dolorum autem quas? Sed
+            adipisci, autem nam quisquam minima sunt ullam fugiat quos nemo
+            necessitatibus vitae.
+          </p>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque
+            consequuntur harum in delectus, sunt dolorum autem quas? Sed
+            adipisci, autem nam quisquam minima sunt ullam fugiat quos nemo
+            necessitatibus vitae.
+          </p>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque
+            consequuntur harum in delectus, sunt dolorum autem quas? Sed
+            adipisci, autem nam quisquam minima sunt ullam fugiat quos nemo
+            necessitatibus vitae.
+          </p>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque
+            consequuntur harum in delectus, sunt dolorum autem quas? Sed
+            adipisci, autem nam quisquam minima sunt ullam fugiat quos nemo
+            necessitatibus vitae.
+          </p>
+        </div>
+        <div className="text-white">
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque
+            consequuntur harum in delectus, sunt dolorum autem quas? Sed
+            adipisci, autem nam quisquam minima sunt ullam fugiat quos nemo
+            necessitatibus vitae.
+          </p>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque
+            consequuntur harum in delectus, sunt dolorum autem quas? Sed
+            adipisci, autem nam quisquam minima sunt ullam fugiat quos nemo
+            necessitatibus vitae.
+          </p>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque
+            consequuntur harum in delectus, sunt dolorum autem quas? Sed
+            adipisci, autem nam quisquam minima sunt ullam fugiat quos nemo
+            necessitatibus vitae.
+          </p>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque
+            consequuntur harum in delectus, sunt dolorum autem quas? Sed
+            adipisci, autem nam quisquam minima sunt ullam fugiat quos nemo
+            necessitatibus vitae.
+          </p>
+        </div>
+        <div className="text-white">
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque
+            consequuntur harum in delectus, sunt dolorum autem quas? Sed
+            adipisci, autem nam quisquam minima sunt ullam fugiat quos nemo
+            necessitatibus vitae.
+          </p>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque
+            consequuntur harum in delectus, sunt dolorum autem quas? Sed
+            adipisci, autem nam quisquam minima sunt ullam fugiat quos nemo
+            necessitatibus vitae.
+          </p>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque
+            consequuntur harum in delectus, sunt dolorum autem quas? Sed
+            adipisci, autem nam quisquam minima sunt ullam fugiat quos nemo
+            necessitatibus vitae.
+          </p>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque
+            consequuntur harum in delectus, sunt dolorum autem quas? Sed
+            adipisci, autem nam quisquam minima sunt ullam fugiat quos nemo
+            necessitatibus vitae.
+          </p>
+        </div>
+        <div className="text-white">
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque
+            consequuntur harum in delectus, sunt dolorum autem quas? Sed
+            adipisci, autem nam quisquam minima sunt ullam fugiat quos nemo
+            necessitatibus vitae.
+          </p>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque
+            consequuntur harum in delectus, sunt dolorum autem quas? Sed
+            adipisci, autem nam quisquam minima sunt ullam fugiat quos nemo
+            necessitatibus vitae.
+          </p>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque
+            consequuntur harum in delectus, sunt dolorum autem quas? Sed
+            adipisci, autem nam quisquam minima sunt ullam fugiat quos nemo
+            necessitatibus vitae.
+          </p>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque
+            consequuntur harum in delectus, sunt dolorum autem quas? Sed
+            adipisci, autem nam quisquam minima sunt ullam fugiat quos nemo
+            necessitatibus vitae.
+          </p>
+        </div>
+        <div className="text-white">
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque
+            consequuntur harum in delectus, sunt dolorum autem quas? Sed
+            adipisci, autem nam quisquam minima sunt ullam fugiat quos nemo
+            necessitatibus vitae.
+          </p>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque
+            consequuntur harum in delectus, sunt dolorum autem quas? Sed
+            adipisci, autem nam quisquam minima sunt ullam fugiat quos nemo
+            necessitatibus vitae.
+          </p>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque
+            consequuntur harum in delectus, sunt dolorum autem quas? Sed
+            adipisci, autem nam quisquam minima sunt ullam fugiat quos nemo
+            necessitatibus vitae.
+          </p>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque
+            consequuntur harum in delectus, sunt dolorum autem quas? Sed
+            adipisci, autem nam quisquam minima sunt ullam fugiat quos nemo
+            necessitatibus vitae.
+          </p>
         </div>
       </div>
     </>

@@ -5,7 +5,9 @@ import { useState, useEffect, useRef } from "react";
  * @param targetRef
  * @param options
  * @returns
- * return the id or class name of the intersected element
+ * return inviewport and intersectedEl
+ * inViewport: 0 not in view port, 1 in viewport coming from top, 2 in viewport coming from bottom
+ * intersectedEl: the custom data-id attribute of the intersected element
  */
 const useIntersectionObserver = () => {
   const [intersectedEl, setIntersectedEl] = useState<string>("");

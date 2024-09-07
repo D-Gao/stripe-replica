@@ -45,12 +45,8 @@ const ModulesContianer = () => {
           top: `calc(50% - 270px)`,
         }}
       >
-        <div
-          className={`${
-            showA ? "opacity-100" : "opacity-0"
-          } transition-all duration-1000`}
-        >
-          <ModuleA></ModuleA>
+        <div className={`transition-all duration-1000`}>
+          <ModuleA show={showA}></ModuleA>
         </div>
         <ModuleB show={showB}></ModuleB>
         <ModuleC show={showc}></ModuleC>

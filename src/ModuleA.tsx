@@ -47,7 +47,7 @@ const map: Record<string, JSX.Element> = {
   Treasury: <TreasureSvg></TreasureSvg>,
 };
 
-const ModuleA = () => {
+const ModuleA = ({ show = false }: { show: boolean }) => {
   const tlArray = useMemo(() => {
     return Array.from({ length: 8 }, () => gsap.timeline());
   }, []);
@@ -72,7 +72,6 @@ const ModuleA = () => {
       const pathLength = (path as SVGPathElement).getTotalLength();
       connectorsId.push(id!);
       connectorsLength.push(pathLength);
-      /* connectFromTo.push({[id!]: {from: } }) */
     });
     tlArray.forEach((tl, i) => {
       tl.to(`[data-js-id="${connectorsId[i]}"] path`, {
@@ -195,10 +194,10 @@ const ModuleA = () => {
         .add(tlArray[1].restart(), 0) // Start the second animation immediately
         .add(tlArray[2].restart(), ">") // Start the third animation at the time as the second finish
         .add(tlArray[3].restart(), "<") // Start the fourth animation at the same time as the third
-        .add(tlArray[4].restart(), ">") // Start fifth animation 1 second before the previous animation ends
-        .add(tlArray[5].restart(), ">") // Start sixth animation 2 seconds after the fifth starts
-        .add(tlArray[6].restart(), "<") // Start seventh animation shortly after the sixth
-        .add(tlArray[7].restart(), ">"); // Start eighth animation 3 seconds after the seventh
+        .add(tlArray[4].restart(), ">")
+        .add(tlArray[5].restart(), ">")
+        .add(tlArray[6].restart(), "<")
+        .add(tlArray[7].restart(), ">");
       masterTimeline.repeat(-1);
     }
 
@@ -209,7 +208,44 @@ const ModuleA = () => {
         tl.clear();
       });
     };
-  }, []);
+  }, [tlArray]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      if (show) {
+        gsap.from(`.slot-wrapper`, {
+          scale: 0,
+          opacity: 0,
+          duration: 1,
+
+          stagger: {
+            each: Math.random() / 10,
+          },
+        });
+        gsap.from(`.HomepageFrontdoorConnection`, {
+          opacity: 0,
+          duration: 0.3,
+        });
+      } else {
+        gsap.to(`.slot-wrapper`, {
+          scale: 0,
+          opacity: 0,
+          duration: 1,
+          stagger: {
+            each: Math.random() / 10,
+          },
+        });
+
+        gsap.to(`.HomepageFrontdoorConnection`, {
+          opacity: 0,
+          duration: 0.3,
+        });
+      }
+    });
+    return () => {
+      ctx.revert();
+    };
+  }, [show]);
 
   return (
     <>
@@ -217,12 +253,18 @@ const ModuleA = () => {
         {Object.entries(map).map(([key, SvgComponent]) => (
           <div
             key={key}
-            className={"relative border rounded-md p-2 z-10  slot " + key}
-            style={{ gridArea: key }}
+            className="slot-wrapper"
+            style={{
+              gridArea: key,
+              transition: "none",
+              zIndex: 1,
+            }}
           >
-            <div className="svg-bw custom-svg">{SvgComponent}</div>
-            <div className="svg-colored"> {SvgComponent}</div>
-            <span className="svg-cap">{key}</span>
+            <div className={"relative border rounded-md p-2 z-10  slot " + key}>
+              <div className="svg-bw custom-svg">{SvgComponent}</div>
+              <div className="svg-colored"> {SvgComponent}</div>
+              <span className="svg-cap">{key}</span>
+            </div>
           </div>
         ))}
       </div>

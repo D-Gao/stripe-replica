@@ -31,12 +31,17 @@
 }
 
 .slot {
+  /* transition: none; */
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1;
   transform: scale(0.8);
   background-color: rgba(255, 255, 255, 0);
+  //animation: scale-in-animation 1s ease-in-out forwards;
+  opacity: 1;
 
   &:hover {
     transform: scale(1) !important;
@@ -87,9 +92,7 @@
 
 .HomepageFrontdoorConnection {
   position: absolute;
-}
-
-.connectors {
+  transition: none !important;
   path {
     transition: none !important;
   }

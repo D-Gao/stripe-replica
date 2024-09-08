@@ -1,0 +1,19 @@
+<svg class="HomepageFrontdoorConnection " data-js-controller="HomepageFrontdoorConnection" data-js-id="Sticky-PaymentsConnection" style="left: 36.2656px; top: 221.531px; width: 90.7969px; height: 57.4688px; opacity:1 !important;">
+  <defs>
+    <linearGradient class="RotatingGradient" id="Sticky-PaymentsConnectionGradient" gradientUnits="userSpaceOnUse" data-js-controller="RotatingGradient" data-js-start-rotation="" data-js-speed="" x1="66.56689442275473" x2="33.43310557714388" y1="2.8243917984590468" y2="97.17560820150536">
+  
+    
+    <stop offset="0" stop-color="#11EFE3"></stop>
+  
+    
+    <stop offset="1" stop-color="#9966FF"></stop>
+  
+</linearGradient>
+  </defs>
+
+  <path stroke="url(#Sticky-PaymentsConnectionGradient)" stroke-width="2" fill="none" data-js-target="HomepageFrontdoorConnection.path" d="M1,1
+                L1,36.46875
+                Q1,56.46875
+                21,56.46875
+                L89.796875,56.46875" style="stroke-dasharray: 136.73px; stroke-dashoffset: 136.73px;"></path>
+</svg>

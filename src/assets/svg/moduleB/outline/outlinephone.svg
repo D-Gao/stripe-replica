@@ -1,0 +1,23 @@
+<svg id="phone-outline" width="100%" viewBox="0 0 303 617" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient class="RotatingGradient" id="Sticky-homepageFrontdoorPaymentsGraphicGradient" gradientUnits="userSpaceOnUse" data-js-controller="RotatingGradient" data-js-start-rotation="" data-js-speed="" x1="156.40321353761843" x2="144.59678646283928" y1="0.05666852258889321" y2="614.9433314774199">
+        <stop offset="0" stop-color="#11EFE3"></stop>         
+        <stop offset="1" stop-color="#9966FF"></stop>
+      </linearGradient>
+    </defs>
+    <path d="M1 308.5L1 54.8416C1 36.1197 2.94934 29.3307 6.60979 22.4862C10.2702 15.6418 15.6418 10.2702 22.4862 6.60979C29.3307 2.94934 36.1197 1 54.8416 1L248.158 1C266.88 1 273.669 2.94934 280.514 6.60979C287.358 10.2702 292.73 15.6418 296.39 22.4862C300.051 29.3307 302 36.1197 302 54.8416V308.5" stroke="url(#Sticky-homepageFrontdoorPaymentsGraphicGradient)" stroke-width="2" style="stroke-dasharray: 879.044px; stroke-dashoffset: 0px;"></path>
+    <path d="M1 308.5L1 562.158C1 580.88 2.94934 587.669 6.60979 594.514C10.2702 601.358 15.6418 606.73 22.4862 610.39C29.3307 614.051 36.1197 616 54.8416 616H248.158C266.88 616 273.669 614.051 280.514 610.39C287.358 606.73 292.73 601.358 296.39 594.514C300.051 587.669 302 580.88 302 562.158V308.5" stroke="url(#Sticky-homepageFrontdoorPaymentsGraphicGradient)" stroke-width="2" style="stroke-dasharray: 879.045px; stroke-dashoffset: 0px;"></path>
+    <path d="M52.586 9H250.414C265.57 9 271.066 10.578 276.606 13.5413C282.147 16.5045 286.496 20.8529 289.459 26.3936C292.422 31.9344 294 37.4302 294 52.586V564.414C294 579.57 292.422 585.066 289.459 590.606C286.496 596.147 282.147 600.496 276.606 603.459C271.066 606.422 265.57 608 250.414 608H52.586C37.4302 608 31.9344 606.422 26.3936 603.459C20.8529 600.496 16.5045 596.147 13.5413 590.606C10.578 585.066 9 579.57 9 564.414V52.586C9 37.4302 10.578 31.9344 13.5413 26.3936C16.5045 20.8529 20.8529 16.5045 26.3936 13.5413C31.9344 10.578 37.4302 9 52.586 9Z" stroke="url(#Sticky-homepageFrontdoorPaymentsGraphicGradient)" style="stroke-dasharray: 1708.17px; stroke-dashoffset: 0px;"></path>
+    <line x1="28" y1="284.5" x2="92" y2="284.5" stroke="url(#Sticky-homepageFrontdoorPaymentsGraphicGradient)" style="stroke-dasharray: 64px; stroke-dashoffset: 0px;"></line>
+    <line x1="211" y1="284.5" x2="275" y2="284.5" stroke="url(#Sticky-homepageFrontdoorPaymentsGraphicGradient)" style="stroke-dasharray: 64px; stroke-dashoffset: 0px;"></line>
+    <rect x="27" y="229" width="248" height="32" rx="8" stroke="url(#Sticky-homepageFrontdoorPaymentsGraphicGradient)" style="stroke-dasharray: 545.942px; stroke-dashoffset: 0px;"></rect>
+    <rect x="28" y="551" width="247.999" height="32" rx="8" stroke="url(#Sticky-homepageFrontdoorPaymentsGraphicGradient)" style="stroke-dasharray: 545.94px; stroke-dashoffset: 0px;"></rect>
+    <rect x="28.5" y="327.5" width="247" height="27" rx="7.5" stroke="url(#Sticky-homepageFrontdoorPaymentsGraphicGradient)" style="stroke-dasharray: 534.82px; stroke-dashoffset: 0px;"></rect>
+    <path d="M36 390.5H268C272.142 390.5 275.5 393.858 275.5 398V417.5H28.5V398C28.5 393.858 31.8579 390.5 36 390.5Z" stroke="url(#Sticky-homepageFrontdoorPaymentsGraphicGradient)" style="stroke-dasharray: 541.565px; stroke-dashoffset: 0px;"></path>
+    <path d="M28.5 417.5H151.5V444.5H36C31.8579 444.5 28.5 441.142 28.5 437V417.5Z" stroke="url(#Sticky-homepageFrontdoorPaymentsGraphicGradient)" style="stroke-dasharray: 296.783px; stroke-dashoffset: 0px;"></path>
+    <path d="M151.5 417.5H275.5V437C275.5 441.142 272.142 444.5 268 444.5H151.5V417.5Z" stroke="url(#Sticky-homepageFrontdoorPaymentsGraphicGradient)" style="stroke-dasharray: 298.783px; stroke-dashoffset: 0px;"></path>
+    <path d="M36 480.5H268C272.142 480.5 275.5 483.858 275.5 488V507.5H28.5V488C28.5 483.858 31.8579 480.5 36 480.5Z" stroke="url(#Sticky-homepageFrontdoorPaymentsGraphicGradient)" style="stroke-dasharray: 541.565px; stroke-dashoffset: 0px;"></path>
+    <path d="M28.5 507.5H275.5V527C275.5 531.142 272.142 534.5 268 534.5H36C31.8579 534.5 28.5 531.142 28.5 527V507.5Z" stroke="url(#Sticky-homepageFrontdoorPaymentsGraphicGradient)" style="stroke-dasharray: 541.565px; stroke-dashoffset: 0px;"></path>
+    <rect x="27" y="189" width="249" height="32" rx="8" stroke="url(#Sticky-homepageFrontdoorPaymentsGraphicGradient)" style="stroke-dasharray: 547.942px; stroke-dashoffset: 0px;"></rect>
+    <rect x="109.5" y="32.5" width="87" height="87" rx="7.5" stroke="url(#Sticky-homepageFrontdoorPaymentsGraphicGradient)" style="stroke-dasharray: 334.82px; stroke-dashoffset: 0px;"></rect>
+</svg>

@@ -1,0 +1,19 @@
+<svg class="HomepageFrontdoorConnection " data-js-controller="HomepageFrontdoorConnection" data-js-id="Sticky-RadarConnection" style="left: 412.922px; top: 259.531px; width: 90.8125px; height: 57.4688px;">
+  <defs>
+    <linearGradient class="RotatingGradient" id="Sticky-RadarConnectionGradient" gradientUnits="userSpaceOnUse" data-js-controller="RotatingGradient" data-js-start-rotation="" data-js-speed="" x1="18.618828737555987" x2="81.38117126238606" y1="88.92585375039522" y2="11.074146249558062">
+  
+    
+    <stop offset="0" stop-color="#ff5996"></stop>
+  
+    
+    <stop offset="1" stop-color="#9966ff"></stop>
+  
+</linearGradient>
+  </defs>
+
+  <path stroke="url(#Sticky-RadarConnectionGradient)" stroke-width="2" fill="none" data-js-target="HomepageFrontdoorConnection.path" d="M89.8125,1
+                L89.8125,36.46875
+                Q89.8125,56.46875
+                69.8125,56.46875
+                L1,56.46875" style="stroke-dasharray: 136.746px; stroke-dashoffset: 136.746px;"></path>
+</svg>

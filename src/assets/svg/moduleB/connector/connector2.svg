@@ -1,0 +1,18 @@
+<svg class="HomepageFrontdoorConnection " data-js-controller="HomepageFrontdoorConnection" data-js-id="Sticky-TerminalConnection" style="left: 36.2656px; top: 317px; width: 90.7969px; height: 52px;">
+  <defs>
+    <linearGradient class="RotatingGradient" id="Sticky-TerminalConnectionGradient" gradientUnits="userSpaceOnUse" data-js-controller="RotatingGradient" data-js-start-rotation="" data-js-speed="" x1="87.0548809579081" x2="12.94511904214189" y1="16.43013557973073" y2="83.56986442032444">
+  
+    
+    <stop offset="0" stop-color="#11EFE3"></stop>
+  
+    
+    <stop offset="1" stop-color="#9966FF"></stop>
+  
+</linearGradient>
+  </defs>
+
+  <path stroke="url(#Sticky-TerminalConnectionGradient)" stroke-width="2" fill="none" data-js-target="HomepageFrontdoorConnection.path" d="M1,51
+                L1,21
+                Q1,1 21,1
+                L89.796875,1" style="stroke-dasharray: 131.261px; stroke-dashoffset: 131.261px;"></path>
+</svg>

@@ -1,29 +1,29 @@
 import { useEffect, useMemo } from "react";
-import TaxSvg from "./assets/svg/tax.svg";
-import AtlasSvg from "./assets/svg/atlas.svg";
-import BillingSvg from "./assets/svg/billing.svg";
-import CapitalSvg from "./assets/svg/capital.svg";
-import CheckouSvgt from "./assets/svg/checkout.svg";
-import ClimateSvg from "./assets/svg/climate.svg";
-import ConnectSvg from "./assets/svg/connect.svg";
-import ElementsSvg from "./assets/svg/elements.svg";
-import IdentitySvg from "./assets/svg/identity.svg";
-import InvoicingSvg from "./assets/svg/invoicing.svg";
-import IssuingSvg from "./assets/svg/issuing.svg";
-import PaymentSvg from "./assets/svg/payment.svg";
-import RadarSvg from "./assets/svg/radar.svg";
-import SigmaSvg from "./assets/svg/sigma.svg";
-import TerminalSvg from "./assets/svg/terminal.svg";
-import TreasureSvg from "./assets/svg/treasure.svg";
+import TaxSvg from "./assets/svg/moduleA/tax.svg";
+import AtlasSvg from "./assets/svg/moduleA/atlas.svg";
+import BillingSvg from "./assets/svg/moduleA/billing.svg";
+import CapitalSvg from "./assets/svg/moduleA/capital.svg";
+import CheckouSvgt from "./assets/svg/moduleA/checkout.svg";
+import ClimateSvg from "./assets/svg/moduleA/climate.svg";
+import ConnectSvg from "./assets/svg/moduleA/connect.svg";
+import ElementsSvg from "./assets/svg/moduleA/elements.svg";
+import IdentitySvg from "./assets/svg/moduleA/identity.svg";
+import InvoicingSvg from "./assets/svg/moduleA/invoicing.svg";
+import IssuingSvg from "./assets/svg/moduleA/issuing.svg";
+import PaymentSvg from "./assets/svg/moduleA/payment.svg";
+import RadarSvg from "./assets/svg/moduleA/radar.svg";
+import SigmaSvg from "./assets/svg/moduleA/sigma.svg";
+import TerminalSvg from "./assets/svg/moduleA/terminal.svg";
+import TreasureSvg from "./assets/svg/moduleA/treasure.svg";
 
-import ConnectorPath1 from "./assets/svg/connector/connector1.svg";
-import ConnectorPath2 from "./assets/svg/connector/connector2.svg";
-import ConnectorPath3 from "./assets/svg/connector/connector3.svg";
-import ConnectorPath4 from "./assets/svg/connector/connector4.svg";
-import ConnectorPath5 from "./assets/svg/connector/connector5.svg";
-import ConnectorPath6 from "./assets/svg/connector/connector6.svg";
-import ConnectorPath7 from "./assets/svg/connector/connector7.svg";
-import ConnectorPath8 from "./assets/svg/connector/connector8.svg";
+import ConnectorPath1 from "./assets/svg/moduleA/connector/connector1.svg";
+import ConnectorPath2 from "./assets/svg/moduleA/connector/connector2.svg";
+import ConnectorPath3 from "./assets/svg/moduleA/connector/connector3.svg";
+import ConnectorPath4 from "./assets/svg/moduleA/connector/connector4.svg";
+import ConnectorPath5 from "./assets/svg/moduleA/connector/connector5.svg";
+import ConnectorPath6 from "./assets/svg/moduleA/connector/connector6.svg";
+import ConnectorPath7 from "./assets/svg/moduleA/connector/connector7.svg";
+import ConnectorPath8 from "./assets/svg/moduleA/connector/connector8.svg";
 
 import gsap from "gsap";
 
@@ -74,7 +74,7 @@ const ModuleA = ({ show = false }: { show: boolean }) => {
       connectorsLength.push(pathLength);
     });
     tlArray.forEach((tl, i) => {
-      tl.to(`[data-js-id="${connectorsId[i]}"] path`, {
+      tl.to(`.connectors [data-js-id="${connectorsId[i]}"] path`, {
         keyframes: [
           { strokeDashoffset: 0 + "px", duration: 0.5 },
           { strokeDashoffset: 0 + "px", duration: 2 },
@@ -222,21 +222,21 @@ const ModuleA = ({ show = false }: { show: boolean }) => {
             each: Math.random() / 10,
           },
         });
-        gsap.from(`.HomepageFrontdoorConnection`, {
+        gsap.from(`.connectors .HomepageFrontdoorConnection`, {
           opacity: 0,
-          duration: 0.3,
+          duration: 2,
         });
       } else {
         gsap.to(`.slot-wrapper`, {
           scale: 0,
           opacity: 0,
-          duration: 1,
+          duration: 0.5,
           stagger: {
-            each: Math.random() / 10,
+            each: Math.random() / 30,
           },
         });
 
-        gsap.to(`.HomepageFrontdoorConnection`, {
+        gsap.to(`.connectors .HomepageFrontdoorConnection`, {
           opacity: 0,
           duration: 0.3,
         });

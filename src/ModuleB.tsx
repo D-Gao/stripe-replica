@@ -17,8 +17,6 @@ import PaySec4 from "./assets/svg/moduleB/phone/pay-sec4.svg";
 import { useEffect, useMemo, useRef } from "react";
 import gsap from "gsap";
 
-/* gsap.ticker.fps(144); */
-
 type Props = { show: boolean };
 
 const ModuleB = ({ show }: Props) => {
@@ -191,6 +189,20 @@ const ModuleB = ({ show }: Props) => {
           }
         );
       });
+    } else {
+      //exit animation
+      ctx = gsap.context(() => {
+        gsap.to(`#phone-container`, {
+          opacity: 0,
+          duration: 0.3,
+          delay: 0,
+          scale: 1.2,
+          overwrite: "auto",
+          onStart() {
+            this.invalidate(); // Forces new animation to start from current values
+          },
+        });
+      });
     }
     return () => {
       if (ctx) ctx.revert();
@@ -203,7 +215,10 @@ const ModuleB = ({ show }: Props) => {
         show ? "opacity-100" : "opacity-0"
       } text-rose-300 transition-all duration-1000 absolute  top-[0%] left-[50%] translate-x-[-50%]`}
     >
-      <div className="w-[55%] flex justify-center relative">
+      <div
+        className="w-[55%] flex justify-center relative no-transition"
+        id="phone-container"
+      >
         <OutlinePhone />
         <div className="absolute inset-0" id="phone">
           <PhoneFrame />
@@ -256,7 +271,7 @@ const ModuleB = ({ show }: Props) => {
                 className=" items-center flex flex-col text-white gap-0 text-s scroll-b-v"
                 style={
                   {
-                    "--var-offset": "24px",
+                    "--var-offset": "20%",
                   } as React.CSSProperties
                 }
               >

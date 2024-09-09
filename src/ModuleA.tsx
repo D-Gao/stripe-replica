@@ -26,7 +26,6 @@ import ConnectorPath7 from "./assets/svg/moduleA/connector/connector7.svg";
 import ConnectorPath8 from "./assets/svg/moduleA/connector/connector8.svg";
 
 import gsap from "gsap";
-
 //#C4CCD8
 const map: Record<string, JSX.Element> = {
   Tax: <TaxSvg></TaxSvg>,
@@ -74,16 +73,22 @@ const ModuleA = ({ show = false }: { show: boolean }) => {
       connectorsLength.push(pathLength);
     });
     tlArray.forEach((tl, i) => {
+      /* tl.pause(); */
       tl.to(`.connectors [data-js-id="${connectorsId[i]}"] path`, {
         keyframes: [
-          { strokeDashoffset: 0 + "px", duration: 0.5 },
-          { strokeDashoffset: 0 + "px", duration: 2 },
-          { strokeDashoffset: -connectorsLength[i] + "px", duration: 0.5 },
+          { strokeDashoffset: connectorsLength[i] * 3 + "px", duration: 0 },
+          { strokeDashoffset: connectorsLength[i] * 2 + "px", duration: 0.5 },
+          { strokeDashoffset: connectorsLength[i] * 2 + "px", duration: 2 },
+          { strokeDashoffset: connectorsLength[i] * 1 + "px", duration: 0.5 },
         ],
         ease: "linear",
       })
-        .to(
+        .fromTo(
           `.${connectFromTo[i].from}.slot`,
+          {
+            scale: 0.8,
+            backgroundColor: "transparent",
+          },
           {
             scale: 1,
             backgroundColor: "white",
@@ -91,16 +96,15 @@ const ModuleA = ({ show = false }: { show: boolean }) => {
             yoyo: true, // Automatically reverse
             repeatDelay: 2,
             repeat: 1, // Repeat the forward and reverse cycle once
-            /* onComplete: function () {
-              gsap.set(`.${connectFromTo[i].from}.slot`, {
-                clearProps: "transform",
-              }); // Clears inline styles after animation
-            }, */
           },
           "<"
         )
-        .to(
+        .fromTo(
           `.${connectFromTo[i].from} .svg-colored`,
+          {
+            scale: 1,
+            opacity: 0,
+          },
           {
             scale: 0.7,
             opacity: 1,
@@ -111,8 +115,12 @@ const ModuleA = ({ show = false }: { show: boolean }) => {
           },
           "<"
         )
-        .to(
+        .fromTo(
           `.${connectFromTo[i].from} .svg-bw`,
+          {
+            scale: 1,
+            opacity: 1,
+          },
           {
             scale: 0.7,
             opacity: 0,
@@ -123,11 +131,15 @@ const ModuleA = ({ show = false }: { show: boolean }) => {
           },
           "<"
         )
-        .to(
+        .fromTo(
           `.${connectFromTo[i].from} .svg-cap`,
+          {
+            opacity: 0,
+          },
           {
             opacity: 1,
             y: "-80%",
+
             duration: 0.2,
             repeatDelay: 2,
             yoyo: true, // Automatically reverse
@@ -212,34 +224,48 @@ const ModuleA = ({ show = false }: { show: boolean }) => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      const tl = gsap.timeline();
+      const tl2 = gsap.timeline();
       if (show) {
-        gsap.from(`.slot-wrapper`, {
+        tl.set(".slot-wrapper", {
           scale: 0,
           opacity: 0,
-          duration: 1,
-
-          stagger: {
-            each: Math.random() / 10,
-          },
+          force3D: true,
         });
-        gsap.from(`.connectors .HomepageFrontdoorConnection`, {
-          opacity: 0,
-          duration: 2,
-        });
-      } else {
-        gsap.to(`.slot-wrapper`, {
-          scale: 0,
-          opacity: 0,
+        tl2.set(".connectors .HomepageFrontdoorConnection", { opacity: 0 });
+        tl.to(`.slot-wrapper`, {
+          scale: 1,
+          opacity: 1,
           duration: 0.5,
+          force3D: true,
+
           stagger: {
             each: Math.random() / 30,
           },
         });
-
-        gsap.to(`.connectors .HomepageFrontdoorConnection`, {
+        tl2.to(`.connectors .HomepageFrontdoorConnection`, {
+          opacity: 1,
+          duration: 2,
+        });
+      } else {
+        tl.pause();
+        tl2.pause();
+        tl.to(`.slot-wrapper`, {
+          scale: 0,
+          opacity: 0,
+          duration: 0.5,
+          force3D: true,
+          stagger: {
+            each: Math.random() / 30,
+          },
+        });
+        tl2.to(`.connectors .HomepageFrontdoorConnection`, {
+          force3D: true,
           opacity: 0,
           duration: 0.3,
         });
+        tl2.play();
+        tl.play();
       }
     });
     return () => {

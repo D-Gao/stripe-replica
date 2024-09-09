@@ -14,8 +14,10 @@ import PaySec2 from "./assets/svg/moduleB/phone/pay-sec2.svg";
 import PaySec3 from "./assets/svg/moduleB/phone/pay-sec3.svg";
 import PaySec4 from "./assets/svg/moduleB/phone/pay-sec4.svg";
 
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import gsap from "gsap";
+
+/* gsap.ticker.fps(144); */
 
 type Props = { show: boolean };
 
@@ -23,6 +25,53 @@ const ModuleB = ({ show }: Props) => {
   const tlArray = useMemo(() => {
     return Array.from({ length: 4 }, () => gsap.timeline());
   }, []);
+
+  const masterTimeline = useRef(gsap.timeline());
+
+  function restartCssAnimation() {
+    const animatedElement = document.querySelector(".scroll-b-o");
+
+    if (!animatedElement) return;
+    // Remove the class to stop the animation
+    animatedElement.classList.remove("scroll-b-o");
+
+    // Trigger reflow to force the removal to take effect
+    void (animatedElement as HTMLElement).offsetWidth;
+
+    // Re-add the class to restart the animation
+    animatedElement.classList.add("scroll-b-o");
+  }
+
+  function restartCssAnimationV() {
+    const animatedElement2 = document.querySelectorAll(".scroll-b-v");
+
+    if (animatedElement2.length == 0) return;
+    animatedElement2.forEach((animatedElement) => {
+      // Remove the class to stop the animation
+      animatedElement.classList.remove("scroll-b-v");
+
+      // Trigger reflow to force the removal to take effect
+      void (animatedElement as HTMLElement).offsetWidth;
+
+      // Re-add the class to restart the animation
+      animatedElement.classList.add("scroll-b-v");
+    });
+  }
+
+  function playAnimation() {
+    masterTimeline.current.clear();
+    // Customize the start times of each timeline
+    masterTimeline.current
+      .add(tlArray[0].restart(), 0) // Start first animation immediately
+      .add(tlArray[1].restart(), ">") // Start the second animation immediately
+      .add(tlArray[2].restart(), ">") // Start the third animation at the time as the second finish
+      .add(tlArray[3].restart(), ">"); // Start the fourth animation at the same time as the third
+    masterTimeline.current.repeat(-1);
+    restartCssAnimation();
+    restartCssAnimationV();
+    masterTimeline.current.restart();
+  }
+
   useEffect(() => {
     const svgConnectors = document.querySelectorAll(".connectors-b svg");
 
@@ -47,9 +96,10 @@ const ModuleB = ({ show }: Props) => {
     tlArray.forEach((tl, i) => {
       tl.to(`.connectors-b [data-js-id="${connectorsId[i]}"] path`, {
         keyframes: [
-          { strokeDashoffset: 0 + "px", duration: 0.5 },
-          { strokeDashoffset: 0 + "px", duration: 2 },
-          { strokeDashoffset: -connectorsLength[i] + "px", duration: 0.5 },
+          { strokeDashoffset: connectorsLength[i] * 3 + "px", duration: 0 },
+          { strokeDashoffset: connectorsLength[i] * 2 + "px", duration: 0.5 },
+          { strokeDashoffset: connectorsLength[i] * 2 + "px", duration: 2 },
+          { strokeDashoffset: connectorsLength[i] + "px", duration: 0.5 },
         ],
         ease: "linear",
       })
@@ -97,62 +147,55 @@ const ModuleB = ({ show }: Props) => {
         .pause();
     });
 
-    const masterTimeline = gsap.timeline();
-    function playAnimation() {
-      // Customize the start times of each timeline
-      masterTimeline
-        .add(tlArray[0].restart(), 0) // Start first animation immediately
-        .add(tlArray[1].restart(), ">") // Start the second animation immediately
-        .add(tlArray[2].restart(), ">") // Start the third animation at the time as the second finish
-        .add(tlArray[3].restart(), ">"); // Start the fourth animation at the same time as the third
-
-      masterTimeline.repeat(-1);
-    }
-
-    playAnimation();
-
-    const outlineSvg = document.querySelector("#phone-outline") as SVGElement;
-
-    const children = outlineSvg.children;
-    const childrenLength = outlineSvg.children.length;
-
-    const ctx = gsap.context(() => {
-      for (let i = 1; i < childrenLength; i++) {
-        const pathLength = (children[i] as SVGPathElement).getTotalLength();
-        (
-          children[i] as SVGPathElement
-        ).style.strokeDashoffset = `${pathLength}px`;
-        gsap.from(children[i], {
-          keyframes: [
-            { strokeDashoffset: pathLength + "px", duration: 0 },
-            { strokeDashoffset: 0 + "px", duration: 1 },
-          ],
-          ease: "linear",
-          delay: 0.55,
-        });
-      }
-
-      gsap.fromTo(
-        `#phone`,
-        {
-          opacity: 0,
-        },
-        {
-          opacity: 1,
-          duration: 0.3,
-          delay: 1.6,
-        }
-      );
-    });
-
     return () => {
-      ctx.revert();
-      masterTimeline.clear();
       tlArray.forEach((tl) => {
         tl.clear();
       });
     };
   }, [tlArray]);
+
+  useEffect(() => {
+    let ctx = null;
+    if (show) {
+      const outlineSvg = document.querySelector("#phone-outline") as SVGElement;
+
+      const children = outlineSvg.children;
+      const childrenLength = outlineSvg.children.length;
+
+      ctx = gsap.context(() => {
+        playAnimation();
+        for (let i = 1; i < childrenLength; i++) {
+          const pathLength = (children[i] as SVGPathElement).getTotalLength();
+          (
+            children[i] as SVGPathElement
+          ).style.strokeDashoffset = `${pathLength}px`;
+          gsap.from(children[i], {
+            keyframes: [
+              { strokeDashoffset: pathLength + "px", duration: 0 },
+              { strokeDashoffset: 0 + "px", duration: 1 },
+            ],
+            ease: "linear",
+            delay: 0.55,
+          });
+        }
+
+        gsap.fromTo(
+          `#phone`,
+          {
+            opacity: 0,
+          },
+          {
+            opacity: 1,
+            duration: 0.3,
+            delay: 1.6,
+          }
+        );
+      });
+    }
+    return () => {
+      if (ctx) ctx.revert();
+    };
+  }, [show]);
 
   return (
     <div
@@ -191,8 +234,15 @@ const ModuleB = ({ show }: Props) => {
             <div className="text-title font-bold text-xs mt-2">
               Wood Chair 001
             </div>
-            <div className=" overflow-hidden  no-transition h-[32px]">
-              <div className="flex flex-col text-black gap-3">
+            <div
+              className=" overflow-hidden  no-transition h-[32px]"
+              style={
+                {
+                  "--var-offset": "36px",
+                } as React.CSSProperties
+              }
+            >
+              <div className="flex flex-col text-black gap-3 scroll-b-v">
                 <div>US$149</div>
                 <div>€135.00</div>
                 <div>¥199.00</div>
@@ -202,7 +252,14 @@ const ModuleB = ({ show }: Props) => {
             </div>
 
             <div className="absolute bottom-[5%] overflow-hidden  no-transition h-[32px]">
-              <div className=" items-center flex flex-col text-white gap-0 text-s">
+              <div
+                className=" items-center flex flex-col text-white gap-0 text-s scroll-b-v"
+                style={
+                  {
+                    "--var-offset": "24px",
+                  } as React.CSSProperties
+                }
+              >
                 <div>Pay US$149</div>
                 <div>€135.00 zahlen</div>
                 <div>支付 ¥199.00</div>
@@ -212,21 +269,23 @@ const ModuleB = ({ show }: Props) => {
             </div>
           </div>
 
-          <div className="phone-mask absolute top-0 bottom-0 flex no-transition">
-            <div className="flex-shrink-0">
-              <PaySec1 />
-            </div>
-            <div className="flex-shrink-0">
-              <PaySec2 />
-            </div>
-            <div className="flex-shrink-0">
-              <PaySec3 />
-            </div>
-            <div className="flex-shrink-0">
-              <PaySec4 />
-            </div>
-            <div className="flex-shrink-0">
-              <PaySec1 />
+          <div className=" overflow-hidden  no-transition absolute top-0 bottom-0">
+            <div className="h-full flex scroll-b-o  no-transition">
+              <div className="flex-shrink-0 w-full">
+                <PaySec1 />
+              </div>
+              <div className="flex-shrink-0 w-full">
+                <PaySec2 />
+              </div>
+              <div className="flex-shrink-0 w-full">
+                <PaySec3 />
+              </div>
+              <div className="flex-shrink-0 w-full">
+                <PaySec4 />
+              </div>
+              <div className="flex-shrink-0 w-full">
+                <PaySec1 />
+              </div>
             </div>
           </div>
         </div>

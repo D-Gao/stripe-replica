@@ -157,3 +157,22 @@
     transparent calc(100% - 10px)
   );
 }
+
+.slot-wrapper {
+  * {
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+}
+
+.scroll-b-o {
+  will-change: transform;
+  animation: slide-animation 12s ease-in-out infinite forwards;
+  animation-delay: 0.8s;
+}
+
+.scroll-b-v {
+  will-change: transform;
+  animation: slide-v-animation 12s linear infinite forwards;
+  animation-delay: 0.8s;
+}

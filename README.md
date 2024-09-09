@@ -11,3 +11,9 @@ npm run dev
 #produce production build
 npm run build
 ```
+
+## GSAP
+
+This animation library is really useful for creating complex animations, which is almost impossible to create with plain css.
+
+### .pause()

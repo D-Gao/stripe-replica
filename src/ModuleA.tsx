@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import TaxSvg from "./assets/svg/moduleA/tax.svg";
 import AtlasSvg from "./assets/svg/moduleA/atlas.svg";
 import BillingSvg from "./assets/svg/moduleA/billing.svg";
@@ -50,6 +50,8 @@ const ModuleA = ({ show = false }: { show: boolean }) => {
   const tlArray = useMemo(() => {
     return Array.from({ length: 8 }, () => gsap.timeline());
   }, []);
+  const tl = useRef(gsap.timeline());
+  const tl2 = useRef(gsap.timeline());
 
   useEffect(() => {
     const svgConnectors = document.querySelectorAll(".connectors svg");
@@ -222,55 +224,66 @@ const ModuleA = ({ show = false }: { show: boolean }) => {
     };
   }, [tlArray]);
 
+  /**
+   * use 2 timeline to go forth and back
+   * the main idea is when the show is true tl is active and tl2 need to be suppressed
+   * and viceversa, the reason of using 2 timeline is the fact it is easier or at least for me a convenient
+   * way to start a new aniamtion from the current animation state, for example if the show=true tl is active
+   * and the animation is undergoing at 50% of the current state, by pausing it and
+   * start a tl2 animation with .to() it will go from the current paused animation state to the .to final
+   * state.
+   */
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline();
-      const tl2 = gsap.timeline();
-      if (show) {
-        tl.set(".slot-wrapper", {
-          scale: 0,
-          opacity: 0,
-          force3D: true,
-        });
-        tl2.set(".connectors .HomepageFrontdoorConnection", { opacity: 0 });
-        tl.to(`.slot-wrapper`, {
+    if (show) {
+      tl2.current.pause();
+
+      //clear the tl timeline animation cache to avoid side-effect
+      tl.current = gsap.timeline();
+      tl.current
+        .to(`.slot-wrapper`, {
           scale: 1,
           opacity: 1,
           duration: 0.5,
           force3D: true,
 
           stagger: {
-            each: Math.random() / 30,
+            each: Math.random() / 10,
           },
-        });
-        tl2.to(`.connectors .HomepageFrontdoorConnection`, {
-          opacity: 1,
-          duration: 2,
-        });
-      } else {
-        tl.pause();
-        tl2.pause();
-        tl.to(`.slot-wrapper`, {
+        })
+        .to(
+          `.connectors .HomepageFrontdoorConnection`,
+          {
+            opacity: 1,
+            duration: 0.5,
+          },
+          "<"
+        );
+      //play the defined tl animation since it maybe paused by the line  tl.current.pause(); in else branch
+      tl.current.play();
+    } else {
+      //same logic for tl2
+      tl.current.pause();
+      tl2.current = gsap.timeline();
+      tl2.current
+        .to(`.slot-wrapper`, {
           scale: 0,
           opacity: 0,
-          duration: 0.5,
           force3D: true,
+          duration: 0.5,
           stagger: {
             each: Math.random() / 30,
           },
-        });
-        tl2.to(`.connectors .HomepageFrontdoorConnection`, {
-          force3D: true,
-          opacity: 0,
-          duration: 0.3,
-        });
-        tl2.play();
-        tl.play();
-      }
-    });
-    return () => {
-      ctx.revert();
-    };
+        })
+        .to(
+          `.connectors .HomepageFrontdoorConnection`,
+          {
+            opacity: 0,
+            duration: 0.5,
+          },
+          "<"
+        );
+      tl2.current.play();
+    }
   }, [show]);
 
   return (

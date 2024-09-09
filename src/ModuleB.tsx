@@ -24,6 +24,9 @@ const ModuleB = ({ show }: Props) => {
     return Array.from({ length: 4 }, () => gsap.timeline());
   }, []);
 
+  const tlshow = useRef(gsap.timeline());
+  const tlhide = useRef(gsap.timeline());
+
   const masterTimeline = useRef(gsap.timeline());
 
   function restartCssAnimation() {
@@ -153,60 +156,72 @@ const ModuleB = ({ show }: Props) => {
   }, [tlArray]);
 
   useEffect(() => {
-    let ctx = null;
     if (show) {
+      tlhide.current.pause();
       const outlineSvg = document.querySelector("#phone-outline") as SVGElement;
-
       const children = outlineSvg.children;
       const childrenLength = outlineSvg.children.length;
+      tlshow.current = gsap.timeline();
 
-      ctx = gsap.context(() => {
-        playAnimation();
-        for (let i = 1; i < childrenLength; i++) {
-          const pathLength = (children[i] as SVGPathElement).getTotalLength();
-          (
-            children[i] as SVGPathElement
-          ).style.strokeDashoffset = `${pathLength}px`;
-          gsap.from(children[i], {
+      tlshow.current.to(`#phone-container`, {
+        opacity: 1,
+        duration: 0.3,
+        delay: 0,
+        scale: 1,
+      });
+
+      playAnimation();
+      for (let i = 1; i < childrenLength; i++) {
+        const pathLength = (children[i] as SVGPathElement).getTotalLength();
+        (
+          children[i] as SVGPathElement
+        ).style.strokeDashoffset = `${pathLength}px`;
+        tlshow.current.to(
+          children[i],
+          {
             keyframes: [
               { strokeDashoffset: pathLength + "px", duration: 0 },
               { strokeDashoffset: 0 + "px", duration: 1 },
             ],
             ease: "linear",
-            delay: 0.55,
-          });
-        }
-
-        gsap.fromTo(
-          `#phone`,
-          {
-            opacity: 0,
           },
-          {
-            opacity: 1,
-            duration: 0.3,
-            delay: 1.6,
-          }
+          0.55
         );
-      });
-    } else {
-      //exit animation
-      ctx = gsap.context(() => {
-        gsap.to(`#phone-container`, {
+      }
+
+      tlshow.current.fromTo(
+        `#phone`,
+        {
           opacity: 0,
-          duration: 0.3,
-          delay: 0,
-          scale: 1.2,
-          overwrite: "auto",
-          onStart() {
-            this.invalidate(); // Forces new animation to start from current values
-          },
-        });
+        },
+        {
+          opacity: 1,
+          duration: 1,
+        },
+        2
+      );
+      tlshow.current.play();
+    } else {
+      tlshow.current.pause();
+      tlhide.current = gsap.timeline();
+      tlhide.current.to(`#phone-container`, {
+        opacity: 0,
+        duration: 0.3,
+        delay: 0,
+        scale: 1.2,
       });
+      /*  tlshow.current.pause();
+      //exit animation
+      tlhide.current = gsap.timeline();
+      tlhide.current.to(`#phone-container`, {
+        opacity: 0,
+        duration: 0.3,
+        delay: 0,
+        scale: 1.2,
+      });
+      tlhide.current.play(); */
     }
-    return () => {
-      if (ctx) ctx.revert();
-    };
+    return () => {};
   }, [show]);
 
   return (

@@ -104,7 +104,8 @@ const ModuleC = ({ show }: { show: boolean }) => {
         show ? "opacity-100" : "opacity-0"
       } text-rose-300 transition-all duration-1000 absolute top-[50%] `}
     >
-      moduleCCCCCCCCCCCCCCCCCCCCCCCC
+      Ops... work in progress, the rest of the section is the same in term of
+      implementation so you can work it out yourself
     </div>
   );
 };

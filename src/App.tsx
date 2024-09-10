@@ -5,25 +5,14 @@ const App = () => {
   return (
     <>
       <div>
-        <div className="flex flex-col min-h-[1000px]">
-          <h1 className="text-white text-4xl font-bold">Head Section</h1>{" "}
-          <p className="text-white">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis,
-            commodi pariatur impedit eaque non tempora, veritatis unde assumenda
-            quaerat sed, sint magni quibusdam cum sapiente consequuntur.
-            Reiciendis reprehenderit animi tempora.
-          </p>
-          <p className="text-white">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis,
-            commodi pariatur impedit eaque non tempora, veritatis unde assumenda
-            quaerat sed, sint magni quibusdam cum sapiente consequuntur.
-            Reiciendis reprehenderit animi tempora.
-          </p>
-          <p className="text-white">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis,
-            commodi pariatur impedit eaque non tempora, veritatis unde assumenda
-            quaerat sed, sint magni quibusdam cum sapiente consequuntur.
-            Reiciendis reprehenderit animi tempora.
+        <div className="flex flex-col min-h-[600px] max-w-[1080px] m-auto">
+          <h1 className="text-white text-8xl font-bold">
+            Financial infrastructure to grow your revenue
+          </h1>{" "}
+          <p className="text-white text-xl mt-16 w-1/2">
+            Join the millions of companies of all sizes that use Stripe to
+            accept payments online and in person, embed financial services,
+            power custom revenue models, and build a more profitable business.
           </p>
         </div>
         <div className=" relative flex justify-center">
@@ -43,89 +32,37 @@ const LeftSide = () => {
   return (
     <div className="container-div">
       <div className="min-h-[800px] follow-div " data-id="m-0">
-        <h1 className="text-white text-4xl font-bold">
+        <h1 className="text-white text-4xl font-bold mb-10">
           A fully integrated suite of financial and payments products
         </h1>
         <div>
           <p className="text-white">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur rem
-            aliquam, est recusandae velit, ab natus dolorum dolore temporibus,
-            quia ducimus architecto laudantium impedit! Quis maiores laudantium
-            molestias iste. Voluptatibus.
-          </p>
-        </div>
-        <div>
-          <p className="text-white">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur rem
-            aliquam, est recusandae velit, ab natus dolorum dolore temporibus,
-            quia ducimus architecto laudantium impedit! Quis maiores laudantium
-            molestias iste. Voluptatibus.
-          </p>
-        </div>
-        <div>
-          <p className="text-white ">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur rem
-            aliquam, est recusandae velit, ab natus dolorum dolore temporibus,
-            quia ducimus architecto laudantium impedit! Quis maiores laudantium
-            molestias iste. Voluptatibus.
+            Reduce costs, grow revenue, and run your business more efficiently
+            on a fully integrated platform. Use Stripe to handle all of your
+            payments-related needs, manage revenue operations, and launch (or
+            invent) new business models.
           </p>
         </div>
       </div>
       <div className="min-h-[800px] follow-div " data-id="m-1">
-        <h1 className="text-white text-4xl font-bold">
-          A fully integrated suite of financial and payments products
+        <h1 className="text-white text-4xl font-bold mb-10">
+          Accept and optimise payments, globally
         </h1>
         <div>
           <p className="text-white">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur rem
-            aliquam, est recusandae velit, ab natus dolorum dolore temporibus,
-            quia ducimus architecto laudantium impedit! Quis maiores laudantium
-            molestias iste. Voluptatibus.
-          </p>
-        </div>
-        <div>
-          <p className="text-white">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur rem
-            aliquam, est recusandae velit, ab natus dolorum dolore temporibus,
-            quia ducimus architecto laudantium impedit! Quis maiores laudantium
-            molestias iste. Voluptatibus.
-          </p>
-        </div>
-        <div>
-          <p className="text-white">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur rem
-            aliquam, est recusandae velit, ab natus dolorum dolore temporibus,
-            quia ducimus architecto laudantium impedit! Quis maiores laudantium
-            molestias iste. Voluptatibus.
+            Increase authorisation rates, optimise your checkout conversion, and
+            offer local payment methods in every market.
           </p>
         </div>
       </div>
       <div className="min-h-[800px] follow-div " data-id="m-2">
-        <h1 className="text-white text-4xl font-bold">
-          A fully integrated suite of financial and payments products
+        <h1 className="text-white text-4xl font-bold mb-10">
+          Capture recurring revenue
         </h1>
         <div>
           <p className="text-white">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur rem
-            aliquam, est recusandae velit, ab natus dolorum dolore temporibus,
-            quia ducimus architecto laudantium impedit! Quis maiores laudantium
-            molestias iste. Voluptatibus.
-          </p>
-        </div>
-        <div>
-          <p className="text-white">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur rem
-            aliquam, est recusandae velit, ab natus dolorum dolore temporibus,
-            quia ducimus architecto laudantium impedit! Quis maiores laudantium
-            molestias iste. Voluptatibus.
-          </p>
-        </div>
-        <div>
-          <p className="text-white">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur rem
-            aliquam, est recusandae velit, ab natus dolorum dolore temporibus,
-            quia ducimus architecto laudantium impedit! Quis maiores laudantium
-            molestias iste. Voluptatibus.
+            Support recurring business models, minimise churn, and automate
+            finance operations.
           </p>
         </div>
       </div>

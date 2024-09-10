@@ -6,7 +6,7 @@ const App = () => {
     <>
       <div>
         <div className="flex flex-col min-h-[600px] max-w-[1080px] m-auto">
-          <h1 className="text-white text-8xl font-bold">
+          <h1 className="text-white text-6xl sm:text-8xl font-bold">
             Financial infrastructure to grow your revenue
           </h1>{" "}
           <p className="text-white text-xl mt-16 w-1/2">
@@ -16,7 +16,7 @@ const App = () => {
           </p>
         </div>
         <div className=" relative flex justify-center">
-          <div className="grid grid-cols-2 max-w-[1080px]">
+          <div className="grid grid-cols-[1fr_10fr] sm:grid-cols-2  max-w-[1080px]">
             <LeftSide></LeftSide>
             <ModulesContianer></ModulesContianer>
           </div>
@@ -32,7 +32,7 @@ const LeftSide = () => {
   return (
     <div className="container-div">
       <div className="min-h-[800px] follow-div " data-id="m-0">
-        <h1 className="text-white text-4xl font-bold mb-10">
+        <h1 className="text-white text-2xl sm:text-4xl font-bold mb-10">
           A fully integrated suite of financial and payments products
         </h1>
         <div>
@@ -45,7 +45,7 @@ const LeftSide = () => {
         </div>
       </div>
       <div className="min-h-[800px] follow-div " data-id="m-1">
-        <h1 className="text-white text-4xl font-bold mb-10">
+        <h1 className="text-white text-2xl sm:text-4xl font-bold mb-10">
           Accept and optimise payments, globally
         </h1>
         <div>
@@ -56,7 +56,7 @@ const LeftSide = () => {
         </div>
       </div>
       <div className="min-h-[800px] follow-div " data-id="m-2">
-        <h1 className="text-white text-4xl font-bold mb-10">
+        <h1 className="text-white text-2xl sm:text-4xl font-bold mb-10">
           Capture recurring revenue
         </h1>
         <div>

@@ -7,6 +7,9 @@ export default {
         title: "#727f96",
         "custom-color2": "#33ff57",
       },
+      screens: {
+        md: "900px", // Custom md breakpoint at 900px
+      },
     },
   },
   plugins: [],

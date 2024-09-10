@@ -288,7 +288,7 @@ const ModuleA = ({ show = false }: { show: boolean }) => {
 
   return (
     <>
-      <div className="stripe-grid min-w-[540px] aspect-square ">
+      <div className="stripe-grid max-w-[540px] aspect-square ">
         {Object.entries(map).map(([key, SvgComponent]) => (
           <div
             key={key}

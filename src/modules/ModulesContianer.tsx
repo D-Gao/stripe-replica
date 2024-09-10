@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ModuleA from "../ModuleA";
 import useIntersectionObserver from "../hooks/useObserverIntersection";
 import ModuleB from "../ModuleB";
+import useResizeObserver from "../hooks/useResizeObserver";
 
 const mapper: Record<string, number> = {
   "m-0": 0,
@@ -9,11 +10,16 @@ const mapper: Record<string, number> = {
   "m-2": 2,
 };
 
+const maxWidth = 540;
+
 const ModulesContianer = () => {
   const [inViewport, intersectedEl] = useIntersectionObserver();
   const [showA, setShowA] = useState(false);
   const [showB, setShowB] = useState(false);
   const [showC, setShowC] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const offsetTop = useResizeObserver({ ref });
+  const [scale, setScale] = useState(1);
 
   useEffect(() => {
     // the logic to determine which module to show up
@@ -38,35 +44,51 @@ const ModulesContianer = () => {
     setShowC(index === 2);
   }, [inViewport, intersectedEl]);
 
+  useEffect(() => {
+    console.log(offsetTop);
+    setScale(offsetTop / maxWidth);
+  }, [offsetTop]);
+
   return (
     <div className="relative h-full">
       <div
-        className="sticky-el sticky aspect-square"
+        className="sticky-el sticky aspect-square overflow-x-clip"
         style={{
-          top: `calc(50% - 270px)`,
+          top: `calc(50% - ${offsetTop / 2}px)`,
+          transition: "none",
         }}
+        ref={ref}
       >
         <div className="relative w-full aspect-square">
           <div
-            className="absolute inset-0"
-            style={{ zIndex: showA ? "10" : "-1" }}
+            className="absolute top-0 left-0 w-full aspect-square origin-top-left"
+            style={{
+              transform: `scale(${scale})`,
+              width: maxWidth + "px",
+              transition: "none",
+            }}
           >
-            <ModuleA show={showA}></ModuleA>
-          </div>
-          <div
-            className="absolute inset-0"
-            style={{ zIndex: showB ? "10" : "-1" }}
-          >
-            {" "}
-            <ModuleB show={showB}></ModuleB>{" "}
-          </div>
+            <div
+              className="absolute inset-0"
+              style={{ zIndex: showA ? "10" : "-1" }}
+            >
+              <ModuleA show={showA}></ModuleA>
+            </div>
+            <div
+              className="absolute inset-0"
+              style={{ zIndex: showB ? "10" : "-1" }}
+            >
+              {" "}
+              <ModuleB show={showB}></ModuleB>{" "}
+            </div>
 
-          <div
-            className="absolute inset-0"
-            style={{ zIndex: showC ? "10" : "-1" }}
-          >
-            {" "}
-            <ModuleC show={showC}></ModuleC>
+            <div
+              className="absolute inset-0"
+              style={{ zIndex: showC ? "10" : "-1" }}
+            >
+              {" "}
+              <ModuleC show={showC}></ModuleC>
+            </div>
           </div>
         </div>
       </div>

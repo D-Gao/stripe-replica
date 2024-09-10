@@ -210,16 +210,6 @@ const ModuleB = ({ show }: Props) => {
         delay: 0,
         scale: 1.2,
       });
-      /*  tlshow.current.pause();
-      //exit animation
-      tlhide.current = gsap.timeline();
-      tlhide.current.to(`#phone-container`, {
-        opacity: 0,
-        duration: 0.3,
-        delay: 0,
-        scale: 1.2,
-      });
-      tlhide.current.play(); */
     }
     return () => {};
   }, [show]);

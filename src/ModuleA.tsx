@@ -261,6 +261,8 @@ const ModuleA = ({ show = false }: { show: boolean }) => {
       //play the defined tl animation since it maybe paused by the line  tl.current.pause(); in else branch
       tl.current.play();
     } else {
+      //need to check if it is the page loaded moment
+
       //same logic for tl2
       tl.current.pause();
       tl2.current = gsap.timeline();

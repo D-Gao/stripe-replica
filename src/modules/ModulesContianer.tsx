@@ -45,7 +45,6 @@ const ModulesContianer = () => {
   }, [inViewport, intersectedEl]);
 
   useEffect(() => {
-    console.log(offsetTop);
     setScale(offsetTop / maxWidth);
   }, [offsetTop]);
 

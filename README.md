@@ -2,6 +2,8 @@
 
 This project aims to clone the home page of the [Stripe home page](https://stripe.com)
 
+Demo: [stripe-replica.vercel.app](https://stripe-replica.vercel.app/)
+
 Currently, working on the feature of Modular solutions section, really cool animations with svg. Each animation is not hard but the total orchestration requires a lot of work, and for that purpose I decided to use [GSAP](https://www.npmjs.com/package/gsap) animation library.
 
 ```bash
